@@ -9,11 +9,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Scope("session")
 public class ExampleController {
     static final String ROOT_PAGE_URL = "/";
+    static final String WELCOME_PAGE_URL = "welcome";
 
-
+    /**
+     *
+     * @return
+     */
     @GetMapping(ROOT_PAGE_URL)
     public String showRootPage(){
-        return "example.html";
+        return "redirect:" + WELCOME_PAGE_URL;
     }
+
+    /**
+     *
+     * @return
+     */
+    @GetMapping("/"+ WELCOME_PAGE_URL)
+    public String showWelcomePageView(){
+        return WELCOME_PAGE_URL;
+    }
+
+
 
 }
