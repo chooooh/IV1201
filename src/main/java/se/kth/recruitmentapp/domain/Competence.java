@@ -1,4 +1,4 @@
-package se.kth.recruitmentapp.model;
+package se.kth.recruitmentapp.domain;
 
 
 import lombok.Data;

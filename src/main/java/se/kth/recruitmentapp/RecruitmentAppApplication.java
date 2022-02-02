@@ -4,8 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import se.kth.recruitmentapp.model.Availability;
-import se.kth.recruitmentapp.model.Person;
+import se.kth.recruitmentapp.domain.Person;
 import se.kth.recruitmentapp.repository.*;
 
 import java.util.Optional;

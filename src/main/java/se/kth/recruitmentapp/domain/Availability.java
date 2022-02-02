@@ -1,10 +1,9 @@
-package se.kth.recruitmentapp.model;
+package se.kth.recruitmentapp.domain;
 
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 @Data
 @Entity
