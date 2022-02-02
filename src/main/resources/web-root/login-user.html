@@ -12,10 +12,17 @@
     <h2>This is the login page!</h2>
     <form th:action="@{/login}" th:object="${loginForm}" method="POST">
         <p class="loginForm">
-            <input type="text" th:field="*{username}" id="username-id"/>
-            <input type="text" th:field="*{password}"  id="password-id"/>
-            <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"> Username Error</span>
-            <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"> Password Error</span>
+            <ul class = "loginUl">
+                <li>
+                    <input type="text" th:field="*{username}" id="username-id"/>
+                    <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"> Username Error</span>
+                </li>
+                <li>
+                    <input type="text" th:field="*{password}"  id="password-id"/>
+                    <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"> Password Error</span>
+                </li>
+            </ul>
+
         </p>
         <p class="submit"><input type="submit" th:value="#{account.login.submit}"/></p>
     </form>

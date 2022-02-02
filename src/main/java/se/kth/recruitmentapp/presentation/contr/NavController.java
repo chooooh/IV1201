@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @Scope("session")
-public class WelcomeController {
+public class NavController {
     static final String ROOT_PAGE_URL       = "/";
     static final String WELCOME_PAGE_URL    = "welcome";
     static final String LOGIN_PAGE_URL      = "login-user";
+    static final String SIGNUP_PAGE_URL     = "sign-up";
 
     /**
      * If no page is specified, redirect to the welcome page.
@@ -36,6 +37,16 @@ public class WelcomeController {
      */
     @GetMapping("/" + LOGIN_PAGE_URL)
     public String showLoginPageView(LoginForm loginForm){ return LOGIN_PAGE_URL; }
+
+    /**
+     * A get request for the Create Account Page.
+     * @param createAccountForm
+     * @return
+     */
+    @GetMapping("/" + SIGNUP_PAGE_URL)
+    public String showSignupPageView(CreateAccountForm createAccountForm){
+        return SIGNUP_PAGE_URL;
+    }
 
 
 }
