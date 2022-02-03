@@ -2,12 +2,15 @@ package se.kth.recruitmentapp.domain;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
-@Data
+
 @Entity
+@Data
 @Table(name = "person")
+@Component
 public class Person implements PersonDTO{
 
     @Id

@@ -1,7 +1,10 @@
 package se.kth.recruitmentapp.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 /**
- * Defines all operations that can be performed on an {@link User}
+ * Defines all operations that can be performed on an {@link Person}
  */
 public interface PersonDTO {
     /**
