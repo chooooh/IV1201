@@ -3,13 +3,14 @@ package se.kth.recruitmentapp;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import se.kth.recruitmentapp.domain.Person;
 import se.kth.recruitmentapp.repository.*;
 
 import java.util.Optional;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class RecruitmentAppApplication {
 
 	public static void main(String[] args) {

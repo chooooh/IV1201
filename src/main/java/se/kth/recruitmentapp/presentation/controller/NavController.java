@@ -1,4 +1,4 @@
-package se.kth.recruitmentapp.presentation.contr;
+package se.kth.recruitmentapp.presentation.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

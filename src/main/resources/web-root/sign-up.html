@@ -11,6 +11,24 @@
         <h1>Signup!</h1>
         <h2>This is the signup page!</h2>
 
+        <form method="POST" th:action="@{/register}" id="registerForm">
+            <label for="name">name: </label>
+            <input type="text" name="name"/><br/>
+            <label for="surname">surname: </label>
+            <input type="text" name="surname"/><br/>
+            <label for="username">username: </label>
+            <input type="text" name="username"/><br/>
+            <label for="pnr">pnr: </label>
+            <input type="text" name="pnr"/><br/>
+            <label for="email">email: </label>
+            <input type="email" name="email"/><br/>
+            <label for="password">password: </label>
+            <input type="password" name="password"/><br/>
+            <label for="confirm">Confirm password: </label>
+            <input type="password" name="confirm"/><br/>
+
+            <input type="submit" value="Register"/>
+        </form>
     </section>
 </main>
 </body>
