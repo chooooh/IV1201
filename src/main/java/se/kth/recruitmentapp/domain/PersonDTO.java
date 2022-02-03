@@ -3,7 +3,7 @@ package se.kth.recruitmentapp.domain;
 /**
  * Defines all operations that can be performed on an {@link User}
  */
-public interface UserDTO {
+public interface PersonDTO {
     /**
      *
      * @return the Username of the User.
