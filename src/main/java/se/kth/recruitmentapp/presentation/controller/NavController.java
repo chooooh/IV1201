@@ -56,7 +56,8 @@ public class NavController {
      * @return
      */
     @GetMapping("/" + SIGNUP_PAGE_URL)
-    public String showSignupPageView(CreateAccountForm createAccountForm){
+    public String showSignupPageView(CreateAccountForm createAccountForm, Model model){
+        //model.addAttribute("createAccountForm", createAccountForm);
         return SIGNUP_PAGE_URL;
     }
 

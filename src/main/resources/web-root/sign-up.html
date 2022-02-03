@@ -11,20 +11,20 @@
         <h1>Signup!</h1>
         <h2>This is the signup page!</h2>
 
-        <form method="POST" th:action="@{/register}" id="registerForm">
-            <label for="name">name: </label>
+        <form method="POST" th:action="@{/create-account}" th:object="${createAccountForm}" id="createAccountForm">
+            <label for="create-account-applicant" th:text="#{create-account.applicant-firstname}">firstname: </label>
             <input type="text" name="name"/><br/>
-            <label for="surname">surname: </label>
+            <label for="surname" th:text="#{create-account.applicant-surname}">surname: </label>
             <input type="text" name="surname"/><br/>
-            <label for="username">username: </label>
+            <label for="username" th:text="#{create-account.applicant-username}">username: </label>
             <input type="text" name="username"/><br/>
-            <label for="pnr">pnr: </label>
+            <label for="pnr" th:text="#{create-account.applicant-pnr}">pnr: </label>
             <input type="text" name="pnr"/><br/>
-            <label for="email">email: </label>
+            <label for="email" th:text="#{create-account.applicant-email}">email: </label>
             <input type="email" name="email"/><br/>
-            <label for="password">password: </label>
+            <label for="password" th:text="#{create-account.applicant-password}">password: </label>
             <input type="password" name="password"/><br/>
-            <label for="confirm">Confirm password: </label>
+            <label for="confirm" th:text="#{create-account.applicant-cpassword}">Confirm password: </label>
             <input type="password" name="confirm"/><br/>
 
             <input type="submit" value="Register"/>

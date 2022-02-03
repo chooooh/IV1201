@@ -5,6 +5,7 @@ import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
@@ -38,7 +39,6 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         this.applicationContext = applicationContext;
     }
 
-
     /**
      * Configuration of requests for static files.
      **/
@@ -51,6 +51,20 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
                 .setCachePeriod(cachePeriodForStaticFilesInSecs).resourceChain(true)
                 .addResolver(new PathResourceResolver());
     }
+
+
+
+    @Bean
+    public MessageSource messageSource() {
+        final ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasenames("classpath:/i18n/Message", "classpath:/i18n/ValidationMessages");
+        messageSource.setUseCodeAsDefaultMessage(true);
+        messageSource.setDefaultEncoding("UTF-8");
+        messageSource.setCacheSeconds(5);
+        return messageSource;
+    }
+
+
 
 
 
