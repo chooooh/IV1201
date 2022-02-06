@@ -12,20 +12,40 @@
         <h2>This is the signup page!</h2>
 
         <form method="POST" th:action="@{/create-account}" th:object="${createAccountForm}" id="createAccountForm">
-            <label for="create-account-applicant" th:text="#{create-account.applicant-firstname}">firstname: </label>
-            <input type="text" name="name"/><br/>
-            <label for="surname" th:text="#{create-account.applicant-surname}">surname: </label>
-            <input type="text" name="surname"/><br/>
-            <label for="username" th:text="#{create-account.applicant-username}">username: </label>
-            <input type="text" name="username"/><br/>
-            <label for="pnr" th:text="#{create-account.applicant-pnr}">pnr: </label>
-            <input type="text" name="pnr"/><br/>
-            <label for="email" th:text="#{create-account.applicant-email}">email: </label>
-            <input type="email" name="email"/><br/>
-            <label for="password" th:text="#{create-account.applicant-password}">password: </label>
-            <input type="password" name="password"/><br/>
-            <label for="confirm" th:text="#{create-account.applicant-cpassword}">Confirm password: </label>
-            <input type="password" name="confirm"/><br/>
+            <!-- FIRSTNAME INPUT FIELD -->
+            <label for="create-account-firstname" th:text="#{create-account.applicant-firstname}" >firstname: </label>
+            <input type="text" th:field="*{firstname}" id="create-account-firstname"/><br/>
+            <span class="error" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">firstname error</span>
+
+            <!-- LASTNAME INPUT FIELD -->
+            <label for="create-account-surname" th:text="#{create-account.applicant-surname}">surname: </label>
+            <input type="text" th:field="*{surname}" id="create-account-surname"/><br/>
+            <span class="error" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">surname error</span>
+
+            <!-- USERNAME INPUT FIELD -->
+            <label for="create-account-username" th:text="#{create-account.applicant-username}">username: </label>
+            <input type="text" th:field="*{username}" id="create-account-username"/><br/>
+            <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username error</span>
+
+            <!-- PERSONAL NUMBER INPUT FIELD -->
+            <label for="create-account-pnr" th:text="#{create-account.applicant-pnr}">pnr: </label>
+            <input type="text" th:field="*{pnr}" id="create-account-pnr"/><br/>
+            <span class="error" th:if="${#fields.hasErrors('pnr')}" th:errors="*{pnr}">personal number error</span>
+
+            <!-- EMAIL INPUT FIELD -->
+            <label for="create-account-email" th:text="#{create-account.applicant-email}">email: </label>
+            <input type="email" th:field="*{email}" id="create-account-email"/><br/>
+            <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email error</span>
+
+            <!-- PASSWORD INPUT FIELD -->
+            <label for="create-account-password" th:text="#{create-account.applicant-password}">password: </label>
+            <input type="password" th:field="*{password}" id="create-account-password"/><br/>
+            <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password error</span>
+
+            <!-- CONFIRM PASSWORD INPUT FIELD -->
+            <label for="create-account-confirm-password" th:text="#{create-account.applicant-cpassword}">Confirm password: </label>
+            <input type="password" th:field="*{confirmPassword}" id="create-account-confirm-password"/><br/>
+            <span class="error" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">confirm password error</span>
 
             <input type="submit" value="Register"/>
         </form>

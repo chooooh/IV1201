@@ -12,7 +12,6 @@ import se.kth.recruitmentapp.repository.*;
 import java.util.Optional;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
-
 public class RecruitmentAppApplication {
 
 	public static void main(String[] args) {
