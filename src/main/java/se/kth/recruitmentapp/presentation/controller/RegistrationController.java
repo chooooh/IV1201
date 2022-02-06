@@ -33,7 +33,7 @@ public class RegistrationController {
         //personRepository.save(form.toPerson(passwordEncoder));
         if(bindingResult.hasErrors()){
             System.out.println("Binding result has errors!");
-            model.addAttribute("createAccountForm", new CreateAccountForm());
+            model.addAttribute("createAccountForm", createAccountForm);
             return "sign-up";
         }
 
