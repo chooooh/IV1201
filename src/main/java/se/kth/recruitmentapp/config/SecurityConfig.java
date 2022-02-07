@@ -14,6 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private static final String ROLE_USER = "applicant";
+    private static final String ROLE_ADMIN = "recruiter";
+
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -27,13 +30,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // obs, ordning spelar roll.
         http.authorizeRequests()
-                .antMatchers("/applicants")
-                .access("hasRole('recruiter')")
-
-                .antMatchers("/", "/**").access("permitAll")
+                .antMatchers("/", "/welcome", "/login-user", "/sign-up").hasRole(ROLE_USER)
+                .antMatchers("/", "/**").hasRole(ROLE_ADMIN)
 
                 .and()
-                .formLogin()
+                .formLogin().permitAll()
                 .loginPage("/login-user")
                 .defaultSuccessUrl("/welcome")
 
