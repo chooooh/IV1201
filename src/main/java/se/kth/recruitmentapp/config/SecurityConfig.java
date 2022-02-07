@@ -1,4 +1,4 @@
-/*package se.kth.recruitmentapp.config;
+package se.kth.recruitmentapp.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -39,8 +39,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .logout();
-
-
     }
     @Bean
     public PasswordEncoder encoder() {
@@ -49,4 +47,3 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 }
 
 
- */

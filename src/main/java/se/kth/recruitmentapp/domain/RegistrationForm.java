@@ -29,6 +29,7 @@ public class RegistrationForm {
         role.setName("applicant");
 
         Person person = new Person(name, surname, pnr, email, passwordEncoder.encode(password), username, role);
+
         return person;
     }
 

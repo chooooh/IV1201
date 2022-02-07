@@ -24,7 +24,6 @@ public class NavController {
     @Autowired
     private PersonDTO currentUser;
 
-
     /**
      * If no page is specified, redirect to the welcome page.
      * @return A response that redirects the browser to the welcome page.
