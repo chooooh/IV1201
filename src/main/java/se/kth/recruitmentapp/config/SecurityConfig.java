@@ -1,4 +1,4 @@
-/*package se.kth.recruitmentapp.config;
+package se.kth.recruitmentapp.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -48,5 +48,3 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 }
 
-
- */

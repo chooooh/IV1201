@@ -1,9 +1,15 @@
 package se.kth.recruitmentapp.presentation.controller;
 
+import lombok.Data;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import se.kth.recruitmentapp.domain.Person;
+import se.kth.recruitmentapp.domain.Role;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Data
 public class CreateAccountForm {
     @NotNull
     @NotBlank(message = "{create-acct.applicant-firstname.missing}")
@@ -34,59 +40,12 @@ public class CreateAccountForm {
     @Size(min = 6, max = 18, message = "{create-acct.applicant-password.length}")
     private String confirmPassword;
 
-    public String getConfirmPassword(){
-        return confirmPassword;
-    }
+    public Person toPerson(PasswordEncoder passwordEncoder) {
+        Role role = new Role();
+        role.setId(2);
+        role.setName("applicant");
 
-    public void setConfirmPassword(String confirmPassword){
-        this.confirmPassword = confirmPassword;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String name) {
-        this.firstname = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getPnr() {
-        return pnr;
-    }
-
-    public void setPnr(String pnr) {
-        this.pnr = pnr;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+        Person person = new Person(firstname, surname, pnr, email, passwordEncoder.encode(password), username, role);
+        return person;
     }
 }
