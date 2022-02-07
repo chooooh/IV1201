@@ -19,7 +19,7 @@ public class NavController {
     static final String WELCOME_PAGE_URL    = "welcome";
     static final String LOGIN_PAGE_URL      = "login-user";
     static final String SIGNUP_PAGE_URL     = "sign-up";
-    static final String ON_LOGIN_REQUEST_SOME_URL = "login";  //What should the request be when a user clicks login?
+    //static final String ON_LOGIN_REQUEST_SOME_URL = "login";  //What should the request be when a user clicks login?
 
     @Autowired
     private PersonDTO currentUser;
@@ -60,21 +60,4 @@ public class NavController {
         return SIGNUP_PAGE_URL;
     }
 
-    /**
-     *
-     * @param loginForm         content of the login form
-     * @param bindingResult     validation result for the create account form.
-     * @param model             Model objects used by the login form
-     * @return UNKNOWN!!!!, what page should be returned on failed login vs successful login?
-     */
-    @PostMapping("/" + ON_LOGIN_REQUEST_SOME_URL)
-    public String login(@Valid LoginForm loginForm, BindingResult bindingResult, Model model){
-        if(bindingResult.hasErrors()){
-            model.addAttribute("loginForm", new LoginForm());
-            return LOGIN_PAGE_URL;
-        }
-        //currentUser = service.findUser()
-        // SHOULD NOT RETURN THE SAME URL
-        return LOGIN_PAGE_URL;
-    }
 }

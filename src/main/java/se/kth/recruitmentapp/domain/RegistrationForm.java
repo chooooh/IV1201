@@ -22,7 +22,6 @@ public class RegistrationForm {
         this.password = password;
     }
 
-    /*
     public Person toPerson(PasswordEncoder passwordEncoder) {
         Role role = new Role();
         role.setId(2);
@@ -33,5 +32,4 @@ public class RegistrationForm {
         return person;
     }
 
-     */
 }

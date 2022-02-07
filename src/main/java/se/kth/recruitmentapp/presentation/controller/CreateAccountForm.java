@@ -1,6 +1,11 @@
 package se.kth.recruitmentapp.presentation.controller;
 
 import lombok.Data;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+import se.kth.recruitmentapp.domain.Person;
+import se.kth.recruitmentapp.domain.Role;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -36,5 +41,13 @@ public class CreateAccountForm {
     @Size(min = 6, max = 18, message = "{create-acct.applicant-password.length}")
     private String confirmPassword;
 
+    public Person toPerson(PasswordEncoder passwordEncoder) {
+        Role role = new Role();
+        role.setId(2);
+        role.setName("applicant");
+
+        Person person = new Person(firstname, surname, pnr, email, passwordEncoder.encode(password), username, role);
+        return person;
+    }
 
 }
