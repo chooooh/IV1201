@@ -30,13 +30,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // obs, ordning spelar roll.
         http.authorizeRequests()
-                .antMatchers("/", "/welcome", "/login-user", "/sign-up").hasRole(ROLE_USER)
+
+                .antMatchers("/", "/welcome", "/login-user", "/sign-up").permitAll()
                 .antMatchers("/", "/**").hasRole(ROLE_ADMIN)
 
                 .and()
                 .formLogin().permitAll()
                 .loginPage("/login-user")
-                .defaultSuccessUrl("/welcome")
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/welcome", true)
 
                 .and()
                 .logout();
