@@ -45,7 +45,6 @@ public class RegistrationController {
         //System.out.println("Binding result has errors!");
             //model.addAttribute("createAccountForm", createAccountForm);
         //}
-        System.out.println("ajsdkajsd");
 
         return "sign-up";
     }

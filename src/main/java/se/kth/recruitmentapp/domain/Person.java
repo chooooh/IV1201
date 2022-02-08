@@ -18,6 +18,7 @@ import java.util.Collection;
 @Data
 @Table(name = "person")
 @Component
+@NoArgsConstructor
 public class Person implements PersonDTO, UserDetails {
 
     @Id
@@ -39,6 +40,16 @@ public class Person implements PersonDTO, UserDetails {
         return 0;
     }
 
+    /**
+     * Creates a new instance with the specified person parameters.
+     * @param name the firstname of the person
+     * @param surname the surname of the person
+     * @param pnr the ssn of the person
+     * @param email the email of the person
+     * @param password the password of the person
+     * @param username the username of the person
+     * @param role the role of the person. Can be recruiter or applicant
+     */
     public Person(String name, String surname, String pnr, String email, String password, String username, Role role) {
         this.name = name;
         this.surname = surname;
@@ -48,8 +59,6 @@ public class Person implements PersonDTO, UserDetails {
         this.username = username;
         this.role = role;
     }
-
-    public Person(){}
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
