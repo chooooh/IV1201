@@ -1,4 +1,13 @@
 package se.kth.recruitmentapp.presentation.error;
 
-public class ExceptionHandler {
+public class ExceptionHandler extends RuntimeException {
+
+    public ExceptionHandler(String message) {
+        super(message);
+    }
+
+    public ExceptionHandler(String message, Throwable cause) {
+        super(message, cause);
+    }
+
 }
