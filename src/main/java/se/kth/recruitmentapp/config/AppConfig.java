@@ -29,15 +29,15 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     }
 
     /**
-     * Configuration of requests for static files.
+     * Configuration of requests for static files under the folder recourses.
      **/
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        int cachePeriodForStaticFilesInSecs = 1;
-        String rootDirForStaticFiles = "classpath:/web-root/";
-
-        registry.addResourceHandler("/**").addResourceLocations(rootDirForStaticFiles)
-                .setCachePeriod(cachePeriodForStaticFilesInSecs).resourceChain(true)
+        registry
+                .addResourceHandler("/web-root/**")
+                .addResourceLocations("/web-root/")
+                .setCachePeriod(1800)
+                .resourceChain(true)
                 .addResolver(new PathResourceResolver());
     }
 
@@ -52,7 +52,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         messageSource.addBasenames("classpath:/i18n/ValidationMessages");
         messageSource.setUseCodeAsDefaultMessage(true);
         messageSource.setDefaultEncoding("UTF-8");
-        messageSource.setCacheSeconds(5);
+        messageSource.setCacheSeconds(1800);
         return messageSource;
     }
 

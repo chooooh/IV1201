@@ -9,9 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import se.kth.recruitmentapp.domain.Person;
-import se.kth.recruitmentapp.domain.PersonDTO;
-import se.kth.recruitmentapp.domain.RegistrationForm;
-import se.kth.recruitmentapp.repository.PersonRepository;
 import se.kth.recruitmentapp.service.PersonService;
 
 import javax.validation.Valid;
@@ -24,7 +21,6 @@ public class RegistrationController {
     private PersonService personService;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    //private PersonDTO person;
 
     @GetMapping
     public String registerForm() {

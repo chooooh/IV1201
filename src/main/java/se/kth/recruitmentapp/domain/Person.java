@@ -19,7 +19,7 @@ import java.util.Collection;
 @Table(name = "person")
 @Component
 @NoArgsConstructor
-public class Person implements PersonDTO, UserDetails {
+public class Person implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,10 +35,6 @@ public class Person implements PersonDTO, UserDetails {
     @JoinColumn(name = "role_id")
     private Role role;
 
-    @Override
-    public int getUserId() {
-        return 0;
-    }
 
     /**
      * Creates a new instance with the specified person parameters.
