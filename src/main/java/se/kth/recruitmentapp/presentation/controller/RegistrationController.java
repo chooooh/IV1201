@@ -41,6 +41,7 @@ public class RegistrationController {
         //if(bindingResult.hasErrors()){
         //System.out.println("Binding result has errors!");
             //model.addAttribute("createAccountForm", createAccountForm);
+
         //}
 
         return NavController.LOGIN_PAGE_URL;
