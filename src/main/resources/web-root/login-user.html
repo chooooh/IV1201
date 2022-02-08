@@ -4,29 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
 </head>
 <body>
 <main layout:fragment="content">
-<section>
-    <h1>Login</h1>
-    <h2>This is the login page!</h2>
+<div class="card-body">
+    <h1 class="card-title">Login</h1>
+    <p class="card-text">This is the login page!</p>
     <form th:action="@{/login}" th:object="${loginForm}" method="post">
-        <p class="loginForm">
-            <ul class = "loginUl">
-                <li>
-                    <input type="text" th:field="*{username}" id="username-id"/>
-                    <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"> Username Error</span>
-                </li>
-                <li>
-                    <input type="password" th:field="*{password}"  id="password-id"/>
-                    <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"> Password Error</span>
-                </li>
-            </ul>
+        <div class="form-group">
+            <label for="login-username" th:text="#{login-user.username}">Username:</label>
+            <input type="text" th:field="*{username}" class="form-control" id="login-username"/>
+            <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"> Username Error</span>
+        </div>
 
-        </p>
-        <p class="submit"><input type="submit" th:value="#{login-user.login.submit}"/></p>
+        <div class="form-group">
+            <label for="login-password" th:text="#{login-user.password}">Password:</label>
+            <input type="password" th:field="*{password}" class="form-control"  id="login-password"/>
+            <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"> Password Error</span>
+        </div>
+
+        <p class="submit"><input type="submit" th:value="#{login-user.login-submit}"/></p>
     </form>
-</section>
+</div>
 </main>
 </body>
 </html>
