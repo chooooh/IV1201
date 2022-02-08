@@ -5,8 +5,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,23 +28,43 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(encoder());
     }
 
+    /**
+     * Permit access to recourses, such as message and validation properties, css, images
+     * to all users.
+     * @param web
+     * @throws Exception
+     */
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        // obs, ordning spelar roll.
-        http.authorizeRequests()
-
-                .antMatchers("/", "/welcome", "/login-user", "/sign-up").permitAll()
-                .antMatchers("/", "/**").hasRole(ROLE_ADMIN)
-
-                .and()
-                .formLogin().permitAll()
-                .loginPage("/login-user")
-                .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/welcome", true)
-
-                .and()
-                .logout();
+    public void configure(WebSecurity web) throws Exception {
+        web
+                .ignoring()
+                .antMatchers("/resources/**");
     }
+
+    /**
+     * Configure Authorization to URLs and Login/logout logic.
+     * @param http
+     * @throws Exception
+     */
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+
+        http
+                .authorizeRequests()
+                        .antMatchers("/login-user", "/sign-up").permitAll()
+                        .anyRequest().authenticated()
+                        .and()
+                .formLogin()
+                        .loginPage("/login-user").permitAll()
+                        .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/welcome", true)
+                        .and()
+                .logout()
+                        .permitAll();
+
+    }
+
+
     @Bean
     public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
