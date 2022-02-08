@@ -1,6 +1,7 @@
 package se.kth.recruitmentapp.presentation.controller;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,7 @@ import javax.validation.Valid;
 
 @Controller
 public class RegistrationController {
-    private final String REGISTER_APPLICANT_URL = "create-account";
+    private final String REGISTER_APPLICANT_URL = "sign-up";
 
     @Autowired
     private PersonService personService;
@@ -24,7 +25,7 @@ public class RegistrationController {
 
     @GetMapping
     public String registerForm() {
-        return "sign-up";
+        return REGISTER_APPLICANT_URL;
     }
 
     @PostMapping("/" + REGISTER_APPLICANT_URL)
@@ -40,9 +41,10 @@ public class RegistrationController {
         //if(bindingResult.hasErrors()){
         //System.out.println("Binding result has errors!");
             //model.addAttribute("createAccountForm", createAccountForm);
+
         //}
 
-        return "sign-up";
+        return NavController.LOGIN_PAGE_URL;
     }
 
 

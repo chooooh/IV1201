@@ -27,17 +27,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(encoder());
     }
 
-    /**
-     * Permit access to everything under the resource folder to all users
-     * @param web
-     * @throws Exception
-     */
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web
-                .ignoring()
-                .antMatchers("/resources/**");
-    }
 
     /**
      * Configure Authorization to URLs and Login/logout logic.

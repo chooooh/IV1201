@@ -9,37 +9,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.resource.PathResourceResolver;
+
 
 
 @EnableTransactionManagement
 @EnableWebMvc
 @Configuration
-public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
-    private ApplicationContext applicationContext;
-    /**
-     * @param applicationContext The application context used by the running
-     *                           application.
-     */
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
-
-    /**
-     * Configuration of requests for static files under the folder recourses.
-     **/
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry
-                .addResourceHandler("/web-root/**")
-                .addResourceLocations("/web-root/")
-                .setCachePeriod(1800)
-                .resourceChain(true)
-                .addResolver(new PathResourceResolver());
-    }
+public class AppConfig implements WebMvcConfigurer {
 
     /**
      * Configuration of where to find message and validation properties.

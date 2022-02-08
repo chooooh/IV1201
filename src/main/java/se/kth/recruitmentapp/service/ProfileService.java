@@ -16,23 +16,10 @@ public class ProfileService {
     @Autowired
     private ProfileRepository profileRepository;
 
-    public Page<Profile> findPaginatedProfiles(Pageable pageable) {
-        int size = pageable.getPageSize();
-        int page = pageable.getPageNumber();
-        int startItem = page * size;
-        //List<Profile> paginatedProfiles = profileRepository.
-
-        return null;
-    }
-
-    public List<Profile> getProfiles() {
+    public List<Profile> getProfiles(int page, int size) {
         List<Profile> profiles = new ArrayList<>();
-        Pageable pageable = PageRequest.of(0, 10);
+        Pageable pageable = PageRequest.of(page, size);
         profileRepository.findAll(pageable).forEach(profile -> profiles.add(profile));
         return profiles;
-    }
-
-    public Page<Profile> getProfilesPaginated(Pageable pageable) {
-        return profileRepository.findAll(pageable);
     }
 }
