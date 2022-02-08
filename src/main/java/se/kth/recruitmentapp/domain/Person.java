@@ -18,7 +18,7 @@ import java.util.Collection;
 @Data
 @Table(name = "person")
 @Component
-public class Person implements PersonDTO, UserDetails {
+public class Person implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,11 +33,6 @@ public class Person implements PersonDTO, UserDetails {
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "role_id")
     private Role role;
-
-    @Override
-    public int getUserId() {
-        return 0;
-    }
 
     public Person(String name, String surname, String pnr, String email, String password, String username, Role role) {
         this.name = name;

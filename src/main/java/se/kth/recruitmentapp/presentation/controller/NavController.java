@@ -5,12 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import se.kth.recruitmentapp.domain.PersonDTO;
-
-import javax.validation.Valid;
 
 @Controller
 @Scope("session")
@@ -19,10 +14,6 @@ public class NavController {
     static final String WELCOME_PAGE_URL    = "welcome";
     static final String LOGIN_PAGE_URL      = "login-user";
     static final String SIGNUP_PAGE_URL     = "sign-up";
-    //static final String ON_LOGIN_REQUEST_SOME_URL = "login";  //What should the request be when a user clicks login?
-
-    @Autowired
-    private PersonDTO currentUser;
 
     /**
      * If no page is specified, redirect to the welcome page.
