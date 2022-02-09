@@ -23,6 +23,10 @@ public class PersonService {
         return repository.findByUsername(username);
     }
 
+    /**
+     * Adds the specified person to the database.
+     * @param person The person to be added to the database
+     */
     public void save(Person person) {
         repository.save(person);
     }
