@@ -23,10 +23,6 @@ public class RegistrationController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @GetMapping
-    public String registerForm() {
-        return REGISTER_APPLICANT_URL;
-    }
 
     @PostMapping("/" + REGISTER_APPLICANT_URL)
     public String processRegistration(@Valid CreateAccountForm createAccountForm, BindingResult bindingResult, Model model) {

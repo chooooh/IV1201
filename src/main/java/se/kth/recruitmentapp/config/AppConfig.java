@@ -15,7 +15,10 @@ public class AppConfig implements WebMvcConfigurer {
 
     /**
      * Configuration of where to find message and validation properties.
-     * @return
+     * Specifies the paths to Message and Validation message properties as base names.
+     * Additionally, sets the amount of time the recourses shall be cached.
+     * @return messageSource, holds the paths to Message and ValidationMessage
+     *                       properties, specified as base names.
      */
     @Bean
     public MessageSource messageSource() {

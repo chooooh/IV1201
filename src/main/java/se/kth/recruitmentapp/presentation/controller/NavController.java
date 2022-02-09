@@ -1,7 +1,5 @@
 package se.kth.recruitmentapp.presentation.controller;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 /**
  * This is a controller which maps HTTP requests made from the navigation bar.
  * Each requests returns the corresponding html.
+ *
+ * The navigation bar provides:
+ * welcome.html
+ * login-user.html
+ * sign-up.html
  */
 @Controller
 @Scope("session")
