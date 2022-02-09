@@ -22,33 +22,34 @@ public class NavController {
      * @return A response that redirects the browser to the welcome page.
      */
     @GetMapping(ROOT_PAGE_URL)
-    public String showRootPage(){
-        return "redirect:" + WELCOME_PAGE_URL;
-    }
+    public String showRootPage(){ return "redirect:" + WELCOME_PAGE_URL;}
 
     /**
      * A get request for the welcome page.
      * @return The welcome page url.
      */
     @GetMapping("/"+ WELCOME_PAGE_URL)
-    public String showWelcomePageView(){
-        return WELCOME_PAGE_URL;
-    }
+    public String showWelcomePageView(){ return WELCOME_PAGE_URL;}
 
     /**
      * A get request for the Login page.
+     * @param model Model objects used by the page
      * @return the login page url.
      */
     @GetMapping("/" + LOGIN_PAGE_URL)
-    public String showLoginPageView(LoginForm loginForm){ return LOGIN_PAGE_URL; }
+    public String showLoginPageView(Model model){
+        model.addAttribute("loginForm", new LoginForm());
+        return LOGIN_PAGE_URL;
+    }
 
     /**
      * A get request for the Create Account Page.
-     * @param createAccountForm content of the Create account form
+     * @param model Model objects used by the page.
      * @return
      */
     @GetMapping("/" + SIGNUP_PAGE_URL)
-    public String showSignupPageView(CreateAccountForm createAccountForm, Model model){
+    public String showSignupPageView(Model model){
+        model.addAttribute("createAccountForm", new CreateAccountForm());
         return SIGNUP_PAGE_URL;
     }
 
