@@ -5,6 +5,9 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * Domain model representing availability of an applicant
+ */
 @Data
 @Entity
 @Table(name = "availability")

@@ -11,6 +11,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * Contains configuration for Spring Security
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -28,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * Configure Authorization to URLs and Login/logout logic.
-     * @param http
+     * @param http object that builds specified security configuration
      * @throws Exception
      */
     @Override
@@ -47,6 +50,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .permitAll();
     }
 
+    /**
+     * Bean that defines a password encoder.
+     * @return An instance of BCryptPasswordEncoder
+     */
     @Bean
     public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
