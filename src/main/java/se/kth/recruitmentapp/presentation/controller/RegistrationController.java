@@ -1,6 +1,7 @@
 package se.kth.recruitmentapp.presentation.controller;
 
 
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,7 +17,8 @@ import javax.validation.Valid;
 
 @Controller
 public class RegistrationController {
-    private final String REGISTER_APPLICANT_URL = "sign-up";
+    private static final String REGISTER_APPLICANT_URL = "sign-up";
+    private static final String CREATE_ACCT_FORM_OBJ_NAME = "createAcctForm";
 
     @Autowired
     private PersonService personService;
@@ -28,9 +30,21 @@ public class RegistrationController {
         return REGISTER_APPLICANT_URL;
     }
 
+    /**
+     * Account creation.
+     *
+     * @param createAccountForm The content of the account form.
+     * @param bindingResult     The result of validation for the form.
+     * @param model             Objects required for the account creation.
+     * @return Login page URL in case account creation succeeds.
+     */
     @PostMapping("/" + REGISTER_APPLICANT_URL)
     public String processRegistration(@Valid CreateAccountForm createAccountForm, BindingResult bindingResult, Model model) {
         System.out.println(createAccountForm.getPassword());
+        if (bindingResult.hasErrors()) {
+            model.addAttribute(CREATE_ACCT_FORM_OBJ_NAME, new CreateAccountForm());
+            return REGISTER_APPLICANT_URL;
+        }
         Person person = personService.findAccountByUsername(createAccountForm.getUsername());
         if(person == null){
             System.out.println("No such person found!");
@@ -38,11 +52,8 @@ public class RegistrationController {
         } else {
             System.out.println("Person found");
         }
-        //if(bindingResult.hasErrors()){
-        //System.out.println("Binding result has errors!");
-            //model.addAttribute("createAccountForm", createAccountForm);
 
-        //}
+        model.addAttribute("loginForm", new LoginForm());
 
         return NavController.LOGIN_PAGE_URL;
     }

@@ -27,7 +27,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(encoder());
     }
 
-
     /**
      * Configure Authorization to URLs and Login/logout logic.
      * @param http
