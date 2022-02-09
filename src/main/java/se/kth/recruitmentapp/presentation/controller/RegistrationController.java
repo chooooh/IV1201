@@ -15,6 +15,9 @@ import se.kth.recruitmentapp.service.PersonService;
 
 import javax.validation.Valid;
 
+/**
+ * Handles all HTTP routes to all registration related operations.
+ */
 @Controller
 public class RegistrationController {
     private static final String REGISTER_APPLICANT_URL = "sign-up";
@@ -25,10 +28,6 @@ public class RegistrationController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @GetMapping
-    public String registerForm() {
-        return REGISTER_APPLICANT_URL;
-    }
 
     /**
      * Account creation.

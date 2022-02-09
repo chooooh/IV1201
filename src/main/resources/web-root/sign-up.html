@@ -36,7 +36,7 @@
             <!-- PERSONAL NUMBER INPUT FIELD -->
 
                 <label for="create-account-pnr" th:text="#{create-account.applicant-pnr}" >pnr: </label>
-                <input type="text" th:field="*{pnr}" class="form-control" id="create-account-pnr" placeholder="yyyyMMdd-xxxx"/><br/>
+                <input type="text" th:field="*{pnr}" class="form-control" id="create-account-pnr" placeholder="yyyymmdd-xxxx"/><br/>
                 <span class="error" th:if="${#fields.hasErrors('pnr')}" th:errors="*{pnr}">personal number error</span>
 
             <!-- EMAIL INPUT FIELD -->

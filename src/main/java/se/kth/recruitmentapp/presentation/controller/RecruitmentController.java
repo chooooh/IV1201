@@ -28,11 +28,18 @@ public class RecruitmentController {
     /**
      * Get request for the applications view page.
      * @param model Model objects used by the page.
+     * @param page Which page to fetch
+     * @param size Number of profiles to fetch
      * @return the applicants page URL
      */
     @GetMapping
-    public String showApplicants(Model model, @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value = "size", defaultValue = "5") int size) {
+    public String showApplicants(Model model, @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value = "size", defaultValue = "10") int size) {
+        int nextPageNumber = page + 1;
         List<Profile> profiles = profileService.getProfiles(page, size);
+        model.addAttribute("page", nextPageNumber);
+        if (profiles.isEmpty()) {
+            model.addAttribute("page", null);
+        }
         model.addAttribute("profiles", profiles);
         return "applicants";
     }

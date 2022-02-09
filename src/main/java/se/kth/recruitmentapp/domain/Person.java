@@ -13,7 +13,9 @@ import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Collection;
 
-
+/**
+ * Domain model representing a person
+ */
 @Entity
 @Data
 @Table(name = "person")

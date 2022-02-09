@@ -5,6 +5,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * Domain model representing the role of a person. Can be either applicant or recruiter.
+ */
 @Entity
 @Data
 @Table(name = "role", schema = "public")
