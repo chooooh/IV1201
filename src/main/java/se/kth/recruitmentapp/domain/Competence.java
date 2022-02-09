@@ -5,6 +5,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+/**
+ * Domain model representing competence of an applicant
+ */
 @Data
 @Entity
 @Table(name = "competence")

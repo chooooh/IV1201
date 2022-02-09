@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 import se.kth.recruitmentapp.domain.Person;
 import se.kth.recruitmentapp.repository.PersonRepository;
 
+/**
+ * This class is required by Spring Security. It implements the required interface and provides an implementation for
+ * fetching users as required.
+ */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 

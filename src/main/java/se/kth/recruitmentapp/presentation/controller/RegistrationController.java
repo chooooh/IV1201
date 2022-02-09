@@ -14,6 +14,9 @@ import se.kth.recruitmentapp.service.PersonService;
 
 import javax.validation.Valid;
 
+/**
+ * Handles all HTTP routes to all registration related operations
+ */
 @Controller
 public class RegistrationController {
     private final String REGISTER_APPLICANT_URL = "sign-up";
@@ -28,6 +31,13 @@ public class RegistrationController {
         return REGISTER_APPLICANT_URL;
     }
 
+    /**
+     * Post route that handles user registration
+     * @param createAccountForm The model representing the form to create an account
+     * @param bindingResult used for form validation
+     * @param model Model objects used by the page
+     * @return the registration page URL
+     */
     @PostMapping("/" + REGISTER_APPLICANT_URL)
     public String processRegistration(@Valid CreateAccountForm createAccountForm, BindingResult bindingResult, Model model) {
         System.out.println(createAccountForm.getPassword());

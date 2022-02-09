@@ -5,6 +5,9 @@ import lombok.Data;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+/**
+ * Domain model representing the competence profile of a person
+ */
 @Data
 @Entity
 @Table(name = "competence_profile")

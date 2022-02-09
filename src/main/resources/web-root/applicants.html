@@ -8,9 +8,31 @@
 <body>
 <main layout:fragment="content">
     <section>
-        <h1>Applicants</h1>
-        <div th:each="profile : ${profiles}">
-            <p th:text="${profile}"/>
+        <div class="container">
+            <h1>Applicants</h1>
+            <table class="table table-bordered table-responsive-sm">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>email</th>
+                    <th>Competence</th>
+                    <th>Yoe</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <!--<div th:if="${hasResults}"> -->
+                    <tr th:each="profile: ${profiles}">
+                        <td th:text="${profile.id}">id</td>
+                        <td th:text="${profile.person.email}">email</td>
+                        <td th:text="${profile.competence.name}">competence</td>
+                        <td th:text="${profile.yoe + ' yoe'}">yoe</td>
+                    </tr>
+                    <!--</div>-->
+                </tbody>
+            </table>
+            <div th:if="${page}">
+                <a th:href="'/recruitment?page=' + ${page}" type="button" class="btn btn-primary" role="button">next</a>
+            </div>
         </div>
     </section>
 </main>
