@@ -4,10 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import se.kth.recruitmentapp.domain.Profile;
 import se.kth.recruitmentapp.repository.ProfileRepository;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,9 +16,10 @@ import java.util.List;
  * This is the profile service class, which defines profile relevant methods
  * that will be used by the controller classes.
  *
- * This service class is transactional, methods commits or rollbacks when returned.
+ * This service class is transactional, methods commits or rollbacks when returned. A new transaction is started
+ * regardless of any existing transaction.
  */
-@Transactional(rollbackOn = Exception.class)
+@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
 @Service
 public class ProfileService {
     @Autowired

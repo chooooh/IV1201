@@ -5,6 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import se.kth.recruitmentapp.domain.Person;
 import se.kth.recruitmentapp.domain.Role;
 import javax.validation.constraints.*;
+import java.util.Optional;
 
 /**
  * A form for validation control. The appropriate validations checks are implemented here.
@@ -40,12 +41,13 @@ public class CreateAccountForm {
     @Size(min = 6, max = 18, message = "{create-acct.applicant-password.length}")
     private String confirmPassword;
 
-    public Person toPerson(PasswordEncoder passwordEncoder) {
-        Role role = new Role();
-        role.setId(2);
-        role.setName("applicant");
-        //hämta från db istället
-
+    /**
+     * Converts this class to a Person object.
+     * @param passwordEncoder the required password encoder.
+     * @param role the required Role.
+     * @return a new Person object.
+     */
+    public Person toPerson(PasswordEncoder passwordEncoder, Role role) {
         Person person = new Person(firstname, surname, pnr, email, passwordEncoder.encode(password), username, role);
         return person;
     }

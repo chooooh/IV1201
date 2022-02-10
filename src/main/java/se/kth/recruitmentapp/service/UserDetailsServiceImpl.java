@@ -6,14 +6,20 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import se.kth.recruitmentapp.domain.Person;
 import se.kth.recruitmentapp.repository.PersonRepository;
 
 /**
  * This class is required by Spring Security. It implements the required interface and provides an implementation for
  * fetching users as required.
+ *
+ * This service class is transactional, methods commits or rollbacks when returned. A new transaction is started
+ * regardless of any existing transaction.
  */
 @Service
+@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired

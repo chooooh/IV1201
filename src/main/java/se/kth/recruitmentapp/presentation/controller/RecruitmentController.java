@@ -31,7 +31,7 @@ public class RecruitmentController {
      * @return the applicants page URL
      */
     @GetMapping
-    public String showApplicants(Model model, @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value = "size", defaultValue = "10") int size) {
+    public String showApplicants(Model model, @RequestParam(value = "page", defaultValue = "0") int page, @RequestParam(value = "size", defaultValue = "15") int size) {
         if (page < 0) {
             return "redirect:/recruitment";
         }
@@ -43,13 +43,11 @@ public class RecruitmentController {
             return "redirect:/recruitment?page=" + (profilePageImpls.getTotalPages() - 1);
         }
 
-        int nextPageNumber = page + 1;
-        int prevPageNumber = page - 1;
         if (profilePageImpls.hasPrevious()) {
-            model.addAttribute("prevPageNumber", prevPageNumber);
+            model.addAttribute("prevPageNumber", page - 1);
         }
         if (profilePageImpls.hasNext()) {
-            model.addAttribute("nextPageNumber", nextPageNumber);
+            model.addAttribute("nextPageNumber", page + 1);
         }
 
         List<Profile> profiles = profilePageImpls.toList();

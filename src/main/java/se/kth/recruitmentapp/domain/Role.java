@@ -13,9 +13,14 @@ import javax.persistence.*;
 @Table(name = "role", schema = "public")
 @NoArgsConstructor
 public class Role {
+    // kan man hantera detta på annat sätt?
+    public static final int RECRUITER = 1;
+    public static final int APPLICANT = 2;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id")
     private int id;
     private String name;
+
 }
