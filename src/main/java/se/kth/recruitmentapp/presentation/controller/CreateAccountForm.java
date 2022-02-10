@@ -1,15 +1,10 @@
 package se.kth.recruitmentapp.presentation.controller;
 
 import lombok.Data;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import se.kth.recruitmentapp.domain.Person;
 import se.kth.recruitmentapp.domain.Role;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 
 /**
  * A form for validation control. The appropriate validations checks are implemented here.
@@ -26,12 +21,11 @@ public class CreateAccountForm {
     private String surname;
     @NotNull
     @NotBlank(message = "{create-acct.applicant-pnr.missing}")
-    @Size(min = 13, max = 13, message = "{create-acct.applicant-pnr.length}")
     @Pattern(regexp = "^\\d{6}(?:\\d{2})?[-\\s]?\\d{4}$", message = "{create-acct.applicant-pnr.format}")
     private String pnr;
     @NotNull
     @NotBlank(message = "{create-acct.applicant-email.missing}")
-    @Size(min = 6, max = 30, message = "{create-acct.applicant-email.length}")
+    @Email(message = "{create-acct.applicant-email.format}")
     private String email;
     @NotNull
     @NotBlank(message = "{create-acct.applicant-username.missing}")
