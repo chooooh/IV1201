@@ -9,4 +9,5 @@ import se.kth.recruitmentapp.domain.Availability;
  */
 @Repository
 public interface AvailabilityRepository extends CrudRepository<Availability, Integer> {
+    
 }

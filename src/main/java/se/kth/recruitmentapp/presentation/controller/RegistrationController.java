@@ -1,16 +1,15 @@
 package se.kth.recruitmentapp.presentation.controller;
 
 
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import se.kth.recruitmentapp.domain.Person;
+import se.kth.recruitmentapp.presentation.forms.CreateAccountForm;
+import se.kth.recruitmentapp.presentation.forms.LoginForm;
 import se.kth.recruitmentapp.service.PersonService;
 
 import javax.validation.Valid;

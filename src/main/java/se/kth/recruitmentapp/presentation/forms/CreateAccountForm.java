@@ -1,4 +1,4 @@
-package se.kth.recruitmentapp.presentation.controller;
+package se.kth.recruitmentapp.presentation.forms;
 
 import lombok.Data;
 
