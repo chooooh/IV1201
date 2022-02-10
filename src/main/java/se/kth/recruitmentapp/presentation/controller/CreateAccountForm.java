@@ -50,6 +50,7 @@ public class CreateAccountForm {
         Role role = new Role();
         role.setId(2);
         role.setName("applicant");
+        //hämta från db istället
 
         Person person = new Person(firstname, surname, pnr, email, passwordEncoder.encode(password), username, role);
         return person;
