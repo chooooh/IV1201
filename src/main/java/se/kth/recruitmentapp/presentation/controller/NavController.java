@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import se.kth.recruitmentapp.domain.Competence;
-import se.kth.recruitmentapp.presentation.forms.ApplicationForm;
+import se.kth.recruitmentapp.presentation.forms.CompetenceForm;
 import se.kth.recruitmentapp.presentation.forms.CreateAccountForm;
 import se.kth.recruitmentapp.presentation.forms.LoginForm;
 import se.kth.recruitmentapp.service.CompetenceService;
@@ -65,8 +65,8 @@ public class NavController {
     @GetMapping("/" + APPLY_PAGE_URL)
     public String showApplyPageView(Model model){
         List<Competence> competenceList = competenceService.getAllCompetences();
-        model.addAttribute("competences", competenceList);
-        model.addAttribute("applicationForm", new ApplicationForm());
+        //model.addAttribute("competences", competenceList);
+        model.addAttribute("competenceForm", new CompetenceForm(competenceList));
         return APPLY_PAGE_URL;
     }
 

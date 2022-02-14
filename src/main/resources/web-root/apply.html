@@ -11,15 +11,30 @@
     <div class="card-body">
         <h1 class="card-title">Apply</h1>
         <p class="card-text">This is the application page!</p>
-        <form th:action="@{/apply}" th:object="${applicationForm}" method="post">
+        <form th:action="@{/add-competence}" th:object="${competenceForm}" method="post">
             <div class="form-group row">
-                <label for="application-competence" class="col-sm-2 col-form-label">Competence</label>
+                <label for="application-competence" class="col-sm-2 col-form-label" th:text="#{applicant-apply.application-competence}">Competence:</label>
                 <div class="col-sm-10">
-                    <select th:each="competence: ${competences}" id="application-competence" class="form-control">
-                        <option><span th:text="${competence.name}"></span></option>
+                    <select th:field="*{selectedCompetence}" id="application-competence" class="form-control">
+                        <option th:each="competence: *{competenceList}" th:value="${competence.name}" th:text="${competence.name}"></option>
                     </select>
                 </div>
+                <label for="application-yearsOfExperiece" class="col-sm-2 col-form-label" th:text="#{applicant-apply.application-yoe}">Years of experience:</label>
+                <div class="col-sm-10">
+                    <input type="text" th:field="*{yearsOfExperience}" class="form-control" id="application-yearsOfExperiece" placeholder="Years"/><br/>
+                    <span class="error" th:if="${#fields.hasErrors('yearsOfExperience')}" th:errors="*{yearsOfExperience}">years of experience error</span>
+                </div>
             </div>
+            <input type="submit" value="Competence"/>
+        </form>
+        <form th:action="@{/send-application}" th:object="${competenceForm}" method="post">
+            <label>Your Competences: </label>
+            <li th:each="mapEntry : *{competences}">
+               <ul>
+                   <span th:text="${mapEntry.key}"></span>
+                   <span th:text="${mapEntry.value}"></span>
+               </ul>
+            </li>
         </form>
     </div>
 </main>
