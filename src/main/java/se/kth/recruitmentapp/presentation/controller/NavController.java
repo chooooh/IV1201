@@ -65,8 +65,8 @@ public class NavController {
     @GetMapping("/" + APPLY_PAGE_URL)
     public String showApplyPageView(Model model){
         List<Competence> competenceList = competenceService.getAllCompetences();
-        //model.addAttribute("competences", competenceList);
-        model.addAttribute("competenceForm", new CompetenceForm(competenceList));
+        model.addAttribute("competences", competenceList);
+        model.addAttribute("competenceForm", new CompetenceForm());
         return APPLY_PAGE_URL;
     }
 
