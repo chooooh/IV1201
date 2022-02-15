@@ -19,17 +19,18 @@
                         <option th:each="competence: *{competenceList}" th:value="${competence.name}" th:text="${competence.name}"></option>
                     </select>
                 </div>
-                <label for="application-yearsOfExperiece" class="col-sm-2 col-form-label" th:text="#{applicant-apply.application-yoe}">Years of experience:</label>
+                <label for="application-yearsOfExperience" class="col-sm-2 col-form-label" th:text="#{applicant-apply.application-yoe}">Years of experience:</label>
                 <div class="col-sm-10">
-                    <input type="text" th:field="*{yearsOfExperience}" class="form-control" id="application-yearsOfExperiece" placeholder="Years"/><br/>
+                    <input type="text" th:field="*{yearsOfExperience}" class="form-control" id="application-yearsOfExperience" placeholder="Years"/><br/>
                     <span class="error" th:if="${#fields.hasErrors('yearsOfExperience')}" th:errors="*{yearsOfExperience}">years of experience error</span>
                 </div>
             </div>
+            <input th:field="*{competenceList}" type="hidden"/>
             <input th:field="*{competences}" type="hidden"/>
             <input type="submit" class="btn btn-primary" value="Add Competence"/>
             <label>Your Competences: </label>
-            <li th:each="competence : *{competences}">
-               <ul>
+            <li>
+               <ul th:each="competence : *{competences}">
                    <span th:text="${competence}"></span>
                </ul>
             </li>

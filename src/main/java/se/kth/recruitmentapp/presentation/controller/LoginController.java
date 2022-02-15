@@ -5,11 +5,16 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import se.kth.recruitmentapp.config.SecurityConfig;
 import se.kth.recruitmentapp.domain.Person;
+import se.kth.recruitmentapp.domain.Role;
 import se.kth.recruitmentapp.presentation.forms.LoginForm;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Handles all HTTP routes to all login related operations
+ */
 @Controller
 public class LoginController {
     static final String LOGIN_PAGE_URL      = "login-user";
@@ -26,7 +31,11 @@ public class LoginController {
     }
 
     /**
-     * A get request for the welcome page.
+     * A get request issued on successful login, see Security configuration {@link SecurityConfig}.
+     * This method either redirects client to the apply page or recruitment page.
+     * The redirect is dependent on the client Role {@link Role}.
+     *
+     * @param request
      * @return The welcome page url.
      */
     @GetMapping("/"+ LOGIN_SUCCESS_URL)

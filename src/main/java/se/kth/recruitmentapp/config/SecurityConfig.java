@@ -17,8 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private static final String ROLE_USER = "applicant";
-    private static final String ROLE_ADMIN = "recruiter";
+    private static final String ROLE_APPLICANT = "applicant";
+    private static final String ROLE_RECRUITER = "recruiter";
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -39,8 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                         .antMatchers( "/login-user", "/sign-up").permitAll()
-                        .antMatchers("/recruitment", "/recruitment/**").hasAuthority(ROLE_ADMIN)
-                        .antMatchers("/apply", "/add-competence").hasAuthority(ROLE_USER)
+                        .antMatchers("/recruitment", "/recruitment/**").hasAuthority(ROLE_RECRUITER)
+                        .antMatchers("/apply", "/add-competence").hasAuthority(ROLE_APPLICANT)
                         .anyRequest().authenticated()
                         .and()
 
