@@ -15,8 +15,6 @@ import java.util.List;
  * defined methods. Methods commits or rollbacks when returned. Throws an exception if there is not an active transaction.
  */
 @Repository
-
-//@Transactional(propagation = Propagation.MANDATORY)
 @Transactional(propagation = Propagation.MANDATORY)
 public interface CompetenceRepository extends CrudRepository<Competence, Integer> {
     List<Competence> findAll();

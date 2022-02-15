@@ -36,7 +36,7 @@ public class LoginController {
      * The redirect is dependent on the client Role {@link Role}.
      *
      * @param request
-     * @return The welcome page url.
+     * @return The apply page url or recruitment page url, if neither then error page.
      */
     @GetMapping("/"+ LOGIN_SUCCESS_URL)
     public String showWelcomePageView(HttpServletRequest request){
