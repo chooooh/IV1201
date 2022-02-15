@@ -68,15 +68,15 @@ public class ApplicationController {
         if (bindingResult.hasErrors()) {
             System.out.println("competence bindings has errors");
         }
-        String compName = competenceForm.getSelectedCompetence();
-        double noYears = competenceForm.getYearsOfExperience();
-        HashMap<String, String> competences = competenceForm.getCompetences();
-        System.out.println("competences " + competences);
 
         CompetenceForm  compForm = new CompetenceForm();
         compForm.setCompetenceList(competenceList);
-        compForm.setCompetences(competenceForm.getCompetences());
-        compForm.addCompetence(compName, String.valueOf(noYears));
+
+        for(String c: competenceForm.getCompetences()){
+            compForm.addCompetence(c);
+        }
+        compForm.addCompetence(competenceForm.getSelectedCompetence(), competenceForm.getYearsOfExperience());
+
         model.addAttribute("competenceForm", compForm);
         return APPLY_PAGE_URL;
     }

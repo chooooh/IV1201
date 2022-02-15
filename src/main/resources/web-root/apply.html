@@ -28,10 +28,9 @@
             <input th:field="*{competences}" type="hidden"/>
             <input type="submit" class="btn btn-primary" value="Add Competence"/>
             <label>Your Competences: </label>
-            <li th:each="mapEntry : *{competences}">
+            <li th:each="competence : *{competences}">
                <ul>
-                   <span th:text="${mapEntry.key}"></span>
-                   <span th:text="${mapEntry.value}"></span>
+                   <span th:text="${competence}"></span>
                </ul>
             </li>
         </form>

@@ -20,6 +20,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/recruitment")
 public class RecruitmentController {
+
+    static final String RECRUITMENT_URL = "recruitment";
+
     @Autowired
     private ProfileService profileService;
 

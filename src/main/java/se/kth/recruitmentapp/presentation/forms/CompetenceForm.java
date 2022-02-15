@@ -3,6 +3,7 @@ package se.kth.recruitmentapp.presentation.forms;
 import lombok.Data;
 import se.kth.recruitmentapp.domain.Competence;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,27 +15,22 @@ public class CompetenceForm {
     //List of competences
     private List<Competence> competenceList;
     //User selected competence and number of years
-    private HashMap<String, String> competences;
+    //private HashMap<String, String> competences;
+    private List<String> competences;
 
-    public CompetenceForm(){
 
-    }
-
-    public CompetenceForm(List<Competence> competenceList){
-        this.competenceList = competenceList;
-    }
-
-    public CompetenceForm(HashMap<String, String> competences, List<Competence> competenceList){
-        this.competenceList = competenceList;
-        this.competences = competences;
-
-    }
-
-    public void addCompetence(String name, String years) {
+    public void addCompetence(String name, double years) {
         if(competences == null){
-            competences = new HashMap<>();
+            competences = new ArrayList<>();
         }
-        competences.put(name, years);
+       competences.add(name + " Years: " + years);
+    }
+
+    public void addCompetence(String c){
+        if(competences == null){
+            competences = new ArrayList<>();
+        }
+        competences.add(c);
     }
 
 }
