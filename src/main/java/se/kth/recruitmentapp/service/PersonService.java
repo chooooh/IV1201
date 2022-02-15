@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import se.kth.recruitmentapp.domain.IllegalCompetenceException;
 import se.kth.recruitmentapp.domain.Person;
 import se.kth.recruitmentapp.domain.Role;
 import se.kth.recruitmentapp.repository.PersonRepository;
@@ -45,6 +46,10 @@ public class PersonService {
      */
     public void save(Person person) {
         personRepository.save(person);
+    }
+
+    public void saveCompetenceTest() throws IllegalCompetenceException {
+        throw new IllegalCompetenceException("already exists");
     }
 
     /**

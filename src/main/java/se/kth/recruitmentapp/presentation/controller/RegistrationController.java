@@ -45,7 +45,7 @@ public class RegistrationController {
         }
 
         Person person = personService.findAccountByUsername(createAccountForm.getUsername());
-        Role role = personService.getRole(PersonService.UserRole.APPLICANT);
+        Role role = personService.getRole(PersonService.UserRole.RECRUITER);
 
         if(person == null){
             System.out.println("No such person found!");
