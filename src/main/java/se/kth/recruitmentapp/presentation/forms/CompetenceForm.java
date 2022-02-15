@@ -22,7 +22,7 @@ public class CompetenceForm {
     /**
      * Method that creates a string of the specified name and years,
      * it adds the created string to a list of such strings called competences.
-     * 
+     *
      * @param name ,the name of the competence
      * @param years ,years of experience
      */
