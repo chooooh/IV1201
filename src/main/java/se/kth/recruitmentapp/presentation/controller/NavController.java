@@ -23,10 +23,6 @@ public class NavController {
     static final String WELCOME_PAGE_URL    = "welcome";
     static final String LOGIN_PAGE_URL      = "login-user";
     static final String SIGNUP_PAGE_URL     = "sign-up";
-    static final String APPLY_PAGE_URL      = "apply";
-
-    @Autowired
-    private CompetenceService competenceService;
 
     /**
      * A get request for the welcome page.
@@ -57,17 +53,5 @@ public class NavController {
         return SIGNUP_PAGE_URL;
     }
 
-    /**
-     * A get request for the application page.
-     * @param model Model objects used by the page.
-     * @return the applicant form url.
-     */
-    @GetMapping("/" + APPLY_PAGE_URL)
-    public String showApplyPageView(Model model){
-        List<Competence> competenceList = competenceService.getAllCompetences();
-        //model.addAttribute("competences", competenceList);
-        model.addAttribute("competenceForm", new CompetenceForm(competenceList));
-        return APPLY_PAGE_URL;
-    }
 
 }

@@ -37,6 +37,8 @@ public class Person implements UserDetails {
     @JoinColumn(name = "role_id")
     private Role role;
 
+    //@OneToOne
+    //private Profile profile
 
     /**
      * Creates a new instance with the specified person parameters.

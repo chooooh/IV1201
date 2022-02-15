@@ -25,9 +25,8 @@
                     <span class="error" th:if="${#fields.hasErrors('yearsOfExperience')}" th:errors="*{yearsOfExperience}">years of experience error</span>
                 </div>
             </div>
-            <input type="submit" value="Competence"/>
-        </form>
-        <form th:action="@{/send-application}" th:object="${competenceForm}" method="post">
+            <input th:field="*{competences}" type="hidden"/>
+            <input type="submit" class="btn btn-primary" value="Add Competence"/>
             <label>Your Competences: </label>
             <li th:each="mapEntry : *{competences}">
                <ul>

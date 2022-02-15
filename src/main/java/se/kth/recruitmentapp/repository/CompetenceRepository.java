@@ -9,10 +9,15 @@ import se.kth.recruitmentapp.domain.Competence;
 import java.util.List;
 
 /**
- * Contains database access methods regarding competence
+ * Contains database access methods regarding competence.
+ *
+ * This repository class is annotated with transactional, which is required for establishing transactions for explicitly
+ * defined methods. Methods commits or rollbacks when returned. Throws an exception if there is not an active transaction.
  */
 @Repository
+
 //@Transactional(propagation = Propagation.MANDATORY)
+@Transactional(propagation = Propagation.MANDATORY)
 public interface CompetenceRepository extends CrudRepository<Competence, Integer> {
     List<Competence> findAll();
 }

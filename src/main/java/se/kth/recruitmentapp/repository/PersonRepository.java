@@ -10,10 +10,11 @@ import se.kth.recruitmentapp.domain.Person;
 /**
  * Contains database access methods regarding users
  *
- * Transactional annotation is
+ * This repository class is annotated with transactional, which is required for establishing transactions for explicitly
+ * defined methods. Methods commits or rollbacks when returned. Throws an exception if there is not an active transaction.
  */
 @Repository
-//@Transactional(propagation = Propagation.MANDATORY)
+@Transactional(propagation = Propagation.MANDATORY)
 public interface PersonRepository extends CrudRepository<Person, Integer> {
     Person findByUsername(String username);
 }

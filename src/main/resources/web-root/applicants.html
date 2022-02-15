@@ -30,9 +30,8 @@
                     <!--</div>-->
                 </tbody>
             </table>
-            <div th:if="${page}">
-                <a th:href="'/recruitment?page=' + ${page}" type="button" class="btn btn-primary" role="button">next</a>
-            </div>
+            <a th:if="${prevPageNumber != null}" th:href="'/recruitment?page=' + ${prevPageNumber}" type="button" class="btn btn-primary" role="button">previous</a>
+            <a th:if="${nextPageNumber != null}"th:href="'/recruitment?page=' + ${nextPageNumber}" type="button" class="btn btn-primary" role="button">next</a>
         </div>
     </section>
 </main>

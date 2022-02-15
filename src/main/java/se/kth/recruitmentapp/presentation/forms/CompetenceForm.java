@@ -16,7 +16,9 @@ public class CompetenceForm {
     //User selected competence and number of years
     private HashMap<String, String> competences;
 
-    public CompetenceForm(){}
+    public CompetenceForm(){
+
+    }
 
     public CompetenceForm(List<Competence> competenceList){
         this.competenceList = competenceList;

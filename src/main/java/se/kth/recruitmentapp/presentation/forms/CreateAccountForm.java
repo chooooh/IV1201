@@ -1,15 +1,11 @@
 package se.kth.recruitmentapp.presentation.forms;
 
 import lombok.Data;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import se.kth.recruitmentapp.domain.Person;
 import se.kth.recruitmentapp.domain.Role;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
+import java.util.Optional;
 
 /**
  * A form for validation control. The appropriate validations checks are implemented here.
@@ -26,12 +22,11 @@ public class CreateAccountForm {
     private String surname;
     @NotNull
     @NotBlank(message = "{create-acct.applicant-pnr.missing}")
-    @Size(min = 13, max = 13, message = "{create-acct.applicant-pnr.length}")
     @Pattern(regexp = "^\\d{6}(?:\\d{2})?[-\\s]?\\d{4}$", message = "{create-acct.applicant-pnr.format}")
     private String pnr;
     @NotNull
     @NotBlank(message = "{create-acct.applicant-email.missing}")
-    @Size(min = 6, max = 30, message = "{create-acct.applicant-email.length}")
+    @Email(message = "{create-acct.applicant-email.format}")
     private String email;
     @NotNull
     @NotBlank(message = "{create-acct.applicant-username.missing}")
@@ -46,11 +41,13 @@ public class CreateAccountForm {
     @Size(min = 6, max = 18, message = "{create-acct.applicant-password.length}")
     private String confirmPassword;
 
-    public Person toPerson(PasswordEncoder passwordEncoder) {
-        Role role = new Role();
-        role.setId(2);
-        role.setName("applicant");
-
+    /**
+     * Converts this class to a Person object.
+     * @param passwordEncoder the required password encoder.
+     * @param role the required Role.
+     * @return a new Person object.
+     */
+    public Person toPerson(PasswordEncoder passwordEncoder, Role role) {
         Person person = new Person(firstname, surname, pnr, email, passwordEncoder.encode(password), username, role);
         return person;
     }
