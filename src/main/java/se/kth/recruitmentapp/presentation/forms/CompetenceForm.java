@@ -11,7 +11,9 @@ public class CompetenceForm {
     private String selectedCompetence;
     private double yearsOfExperience;
 
+    //List of competences
     private List<Competence> competenceList;
+    //User selected competence and number of years
     private HashMap<String, String> competences;
 
     public CompetenceForm(){}
@@ -31,14 +33,6 @@ public class CompetenceForm {
             competences = new HashMap<>();
         }
         competences.put(name, years);
-    }
-
-    public HashMap<String, String> getCompetences(){
-        return competences;
-    }
-
-    public List<Competence> getCompetenceList(){
-        return competenceList;
     }
 
 }
