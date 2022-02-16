@@ -6,11 +6,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import se.kth.recruitmentapp.domain.Person;
+import se.kth.recruitmentapp.presentation.forms.CreateAccountForm;
+import se.kth.recruitmentapp.presentation.forms.LoginForm;
 import se.kth.recruitmentapp.domain.Role;
 import se.kth.recruitmentapp.service.PersonService;
-
 import javax.validation.Valid;
 
 
@@ -19,15 +21,25 @@ import javax.validation.Valid;
  */
 @Controller
 public class RegistrationController {
-    private static final String REGISTER_APPLICANT_URL = "sign-up";
-    private static final String CREATE_ACCT_FORM_OBJ_NAME = "createAcctForm";
-
+    static final String REGISTER_APPLICANT_URL = "sign-up";
+    public static final String CREATE_ACCT_FORM_OBJ_NAME = "createAcctForm";
+    public static final String SIGNUP_PAGE_URL     = "sign-up";
     @Autowired
     private PersonService personService;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
 
+    /**
+     * A get request for the Create Account Page.
+     * @param model Model objects used by the page.
+     * @return the sign-up page url.
+     */
+    @GetMapping("/" + SIGNUP_PAGE_URL)
+    public String showSignupPageView(Model model){
+        model.addAttribute("createAccountForm", new CreateAccountForm());
+        return SIGNUP_PAGE_URL;
+    }
     /**
      * Post request that handles user registration.
      *
@@ -52,12 +64,12 @@ public class RegistrationController {
             personService.save(createAccountForm.toPerson(passwordEncoder, role));
         } else {
             System.out.println("Person found");
-            // throw new UserAlreadyExists();
+            // throw new PersonAlreadyExistsException();
         }
 
         model.addAttribute("loginForm", new LoginForm());
 
-        return NavController.LOGIN_PAGE_URL;
+        return LoginController.LOGIN_PAGE_URL;
     }
 
 

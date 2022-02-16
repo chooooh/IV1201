@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
 import se.kth.recruitmentapp.domain.IllegalCompetenceException;
+import se.kth.recruitmentapp.domain.PersonAlreadyExistsException;
+import se.kth.recruitmentapp.presentation.controller.RegistrationController;
+import se.kth.recruitmentapp.presentation.forms.CreateAccountForm;
 
 /**
  * Handles all errors.
@@ -15,6 +18,7 @@ import se.kth.recruitmentapp.domain.IllegalCompetenceException;
 @ControllerAdvice
 public class ErrorHandling {
     private static final String GENERIC_ERROR_URL = "error";
+    private static final String PERSON_EXISTS_ERROR = "personExists";
 
     public static final String ERROR_TYPE_KEY = "errorType";
 
@@ -26,6 +30,14 @@ public class ErrorHandling {
             model.addAttribute(ERROR_TYPE_KEY, "you have already submitted the competence!");
         }
         return GENERIC_ERROR_URL;
+    }
+
+    @ExceptionHandler(PersonAlreadyExistsException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public String handleException(PersonAlreadyExistsException exception, Model model) {
+        model.addAttribute(RegistrationController.CREATE_ACCT_FORM_OBJ_NAME, new CreateAccountForm());
+        model.addAttribute(ERROR_TYPE_KEY, PERSON_EXISTS_ERROR);
+        return RegistrationController.SIGNUP_PAGE_URL;
     }
 
     /**

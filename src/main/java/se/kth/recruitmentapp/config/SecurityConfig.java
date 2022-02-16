@@ -17,12 +17,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private static final String ROLE_USER = "applicant";
-    private static final String ROLE_ADMIN = "recruiter";
+    private static final String ROLE_APPLICANT = "applicant";
+    private static final String ROLE_RECRUITER = "recruiter";
 
     @Autowired
     private UserDetailsService userDetailsService;
 
+    /**
+     * Configuration, retrieve user details.
+     * @param auth this parameter uses userDetailsService and the password encoder to configure authentication.
+     * @throws Exception throws any exception
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService)
@@ -32,19 +37,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * Configure Authorization to URLs and Login/logout logic.
      * @param http object that builds specified security configuration
-     * @throws Exception
+     * @throws Exception throws any exception
      */
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
                         .antMatchers("/login-user", "/sign-up", "/test").permitAll()
+                        .antMatchers("/recruitment", "/recruitment/**").hasAuthority(ROLE_RECRUITER)
+                        .antMatchers("/apply", "/add-competence").hasAuthority(ROLE_APPLICANT)
                         .anyRequest().authenticated()
                         .and()
+
                 .formLogin()
                         .loginPage("/login-user").permitAll()
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/welcome", true)
+                        .defaultSuccessUrl("/login-success", true)
                         .and()
                 .logout()
                         .permitAll();

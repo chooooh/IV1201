@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import se.kth.recruitmentapp.domain.IllegalCompetenceException;
 import se.kth.recruitmentapp.service.PersonService;
 
-import static se.kth.recruitmentapp.presentation.controller.NavController.LOGIN_PAGE_URL;
+import static se.kth.recruitmentapp.presentation.controller.LoginController.LOGIN_PAGE_URL;
+
 
 @Controller
 public class TestController {

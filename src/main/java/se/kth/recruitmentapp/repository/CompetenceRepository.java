@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import se.kth.recruitmentapp.domain.Competence;
 
+import java.util.List;
+
 /**
  * Contains database access methods regarding competence.
  *
@@ -15,4 +17,5 @@ import se.kth.recruitmentapp.domain.Competence;
 @Repository
 @Transactional(propagation = Propagation.MANDATORY)
 public interface CompetenceRepository extends CrudRepository<Competence, Integer> {
+    List<Competence> findAll();
 }

@@ -15,4 +15,5 @@ import se.kth.recruitmentapp.domain.Availability;
 @Repository
 @Transactional(propagation = Propagation.MANDATORY)
 public interface AvailabilityRepository extends CrudRepository<Availability, Integer> {
+    
 }
