@@ -18,7 +18,9 @@ import se.kth.recruitmentapp.presentation.forms.CreateAccountForm;
 @ControllerAdvice
 public class ErrorHandling {
     private static final String GENERIC_ERROR_URL = "error";
-    private static final String PERSON_EXISTS_ERROR = "personExists";
+    // these error values should map to the same in Message.properties
+    private static final String PERSON_EXISTS_ERROR = "person-exists";
+    private static final String COMPETENCE_EXISTS_ERROR = "competence-exists";
 
     public static final String ERROR_TYPE_KEY = "errorType";
 
@@ -27,7 +29,7 @@ public class ErrorHandling {
     public String handleException(IllegalCompetenceException exception, Model model) {
         System.out.println("exception message: " + exception.getMessage());
         if (exception.getMessage().contains("already")) {
-            model.addAttribute(ERROR_TYPE_KEY, "you have already submitted the competence!");
+            model.addAttribute(ERROR_TYPE_KEY, COMPETENCE_EXISTS_ERROR);
         }
         return GENERIC_ERROR_URL;
     }
