@@ -28,4 +28,12 @@ public class CompetenceService {
     public List<Competence> getAllCompetences(){
         return repository.findAll();
     }
+
+    public void saveSelectedCompetences(List<String> competences) {
+
+    }
+
+    public Competence getCompetenceByName(String name) {
+        return repository.findCompetenceByName(name);
+    }
 }

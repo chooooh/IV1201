@@ -6,6 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import se.kth.recruitmentapp.domain.Competence;
+import se.kth.recruitmentapp.domain.Person;
 import se.kth.recruitmentapp.domain.Profile;
 import se.kth.recruitmentapp.repository.ProfileRepository;
 
@@ -46,4 +48,19 @@ public class ProfileService {
         return profiles;
     }
 
+    /**
+     * Methods that inserts a new row into the competence_profile table.
+     * @param profile , the profile to be saved
+     */
+    public void createProfile(Profile profile) {
+        profileRepository.save(profile);
+    }
+
+    /**
+     * Method that retrieves all profiles associated with the specified person
+     * @param person the person's profiles
+     */
+    public List<Profile> getProfilesByPerson(Person person) {
+        return profileRepository.findProfileByPerson(person);
+    }
 }

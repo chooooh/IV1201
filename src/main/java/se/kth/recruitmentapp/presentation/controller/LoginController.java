@@ -44,7 +44,7 @@ public class LoginController {
         Person person = (Person) auth.getPrincipal();
 
         if(person.getRole().getName().equals("applicant")){
-            return "redirect:/" + ApplicationController.APPLY_PAGE_URL;
+            return "redirect:/" + ApplyController.APPLY_PAGE_URL;
         } else if (person.getRole().getName().equals("recruiter")){
             return "redirect:/" + RecruitmentController.RECRUITMENT_URL;
         }

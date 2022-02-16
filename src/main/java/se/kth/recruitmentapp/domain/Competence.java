@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 /**
  * Domain model representing competence of an applicant
@@ -15,11 +16,13 @@ import javax.persistence.*;
 @Table(name = "competence")
 @Component
 public class Competence {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "competence_id")
     private int id;
     private String name;
+
 
     public Competence() {
     }

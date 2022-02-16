@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import se.kth.recruitmentapp.domain.Competence;
 import se.kth.recruitmentapp.domain.Person;
 import se.kth.recruitmentapp.domain.Role;
 import se.kth.recruitmentapp.repository.PersonRepository;
@@ -21,6 +22,7 @@ import se.kth.recruitmentapp.repository.RoleRepository;
 @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRES_NEW)
 @Service
 public class PersonService {
+
     public enum UserRole {
         RECRUITER,
         APPLICANT
@@ -60,5 +62,6 @@ public class PersonService {
         // throw error?
         return null;
     }
+
 }
 

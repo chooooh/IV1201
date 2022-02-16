@@ -20,7 +20,7 @@ import javax.validation.Valid;
  * Handles all HTTP routes to all registration related operations.
  */
 @Controller
-public class RegistrationController {
+public class SignupController {
     static final String REGISTER_APPLICANT_URL = "sign-up";
     static final String CREATE_ACCT_FORM_OBJ_NAME = "createAcctForm";
     static final String SIGNUP_PAGE_URL     = "sign-up";

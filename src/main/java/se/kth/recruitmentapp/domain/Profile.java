@@ -1,6 +1,7 @@
 package se.kth.recruitmentapp.domain;
 
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -11,9 +12,10 @@ import java.math.BigDecimal;
 @Data
 @Entity
 @Table(name = "competence_profile")
+@Component
 public class Profile {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "competence_profile_id")
     private int id;
     @ManyToOne
@@ -24,5 +26,7 @@ public class Profile {
     private Competence competence;
     @Column(name = "years_of_experience")
     private BigDecimal yoe;
+
+    public Profile(){}
 }
 
