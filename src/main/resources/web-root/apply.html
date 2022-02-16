@@ -28,12 +28,18 @@
             <input th:field="*{competenceList}" type="hidden"/>
             <input th:field="*{profiles}" type="hidden"/>
             <button type="submit" name="action" class="btn btn-primary" value="add-competence">Add Competence</button>
-            <label>Your Competences: </label>
-            <ul th:each="profile : *{profiles}">
-                <span th:text="${profile.competence.name}"></span>
-                <span th:text="${profile.yoe}"></span>
-            </ul>
-            <button type="submit" name="action" class="btn btn-primary" value="save">Save</button>
+            <section>
+                <label>Your Competences: </label>
+                <ul th:each="profile : *{profiles}">
+                    <input type="checkbox" id="competence-to-be-removed">
+                        <label for="competence-to-be-removed">
+                            <span th:text="${profile.competence.name}"></span>
+                            <span th:text="${profile.yoe}"></span>
+                        </label>
+                    </input>
+                </ul>
+            </section>
+            <button type="submit" name="action" class="btn btn-primary" value="save">Remove</button>
         </form>
     </div>
 </main>

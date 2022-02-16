@@ -99,25 +99,18 @@ public class ApplyController {
     }
 
     /**
-     * Handles request of saving competences & years of expertise
+     * Handles request of removing selected competences & years of expertise
      *
      * @param competenceForm ,the contents of the competence form.
      * @param bindingResult  ,validation of the competence form.
      * @param model          ,model objects used by the page.
      * @return
      */
-    @PostMapping(value = "/" + ADD_COMPETENCE_POST_URL, params = "action=save")
+    @PostMapping(value = "/" + ADD_COMPETENCE_POST_URL, params = "action=remove")
     public String saveCompetenceForm(@Valid CompetenceForm competenceForm, BindingResult bindingResult, Model model) {
-        LOGGER.info("POST/" + ADD_COMPETENCE_POST_URL+"/action=save");
+        LOGGER.info("POST/" + ADD_COMPETENCE_POST_URL+"/action=remove");
         LOGGER.info("competence form" + competenceForm);
 
-        /*  TODO: create profile with person service */
-        /*
-        for(Profile profile: competenceForm.getProfiles()){
-            profileService.createProfile(profile);
-        }*/
-
-        //competenceService.saveSelectedCompetences(competenceForm.getCompetences());
         return APPLY_PAGE_URL;
     }
 
