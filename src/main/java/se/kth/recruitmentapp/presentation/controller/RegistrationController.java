@@ -52,6 +52,7 @@ public class RegistrationController {
             personService.save(createAccountForm.toPerson(passwordEncoder, role));
         } else {
             System.out.println("Person found");
+            // throw new UserAlreadyExists();
         }
 
         model.addAttribute("loginForm", new LoginForm());
