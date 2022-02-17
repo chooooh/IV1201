@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import se.kth.recruitmentapp.domain.Person;
+import se.kth.recruitmentapp.domain.PersonAlreadyExistsException;
 import se.kth.recruitmentapp.presentation.forms.CreateAccountForm;
 import se.kth.recruitmentapp.presentation.forms.LoginForm;
 import se.kth.recruitmentapp.domain.Role;
@@ -49,7 +50,7 @@ public class RegistrationController {
      * @return Login page URL in case account creation succeeds.
      */
     @PostMapping("/" + REGISTER_APPLICANT_URL)
-    public String processRegistration(@Valid CreateAccountForm createAccountForm, BindingResult bindingResult, Model model) {
+    public String processRegistration(@Valid CreateAccountForm createAccountForm, BindingResult bindingResult, Model model) throws PersonAlreadyExistsException {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute(CREATE_ACCT_FORM_OBJ_NAME, new CreateAccountForm());
@@ -64,7 +65,7 @@ public class RegistrationController {
             personService.save(createAccountForm.toPerson(passwordEncoder, role));
         } else {
             System.out.println("Person found");
-            // throw new PersonAlreadyExistsException();
+            throw new PersonAlreadyExistsException("person already exists");
         }
 
         model.addAttribute("loginForm", new LoginForm());

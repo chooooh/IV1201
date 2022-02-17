@@ -18,12 +18,18 @@ import se.kth.recruitmentapp.presentation.forms.CreateAccountForm;
 @ControllerAdvice
 public class ErrorHandling {
     private static final String GENERIC_ERROR_URL = "error";
-    // these error values should map to the same in Message.properties
+    // these error values should map to the corresponding values in Message.properties
     private static final String PERSON_EXISTS_ERROR = "person-exists";
     private static final String COMPETENCE_EXISTS_ERROR = "competence-exists";
 
     public static final String ERROR_TYPE_KEY = "errorType";
 
+    /**
+     * Handles business rule exceptions regarding the competence domain.
+     * @param exception The exception to handle
+     * @param model Model containing error information
+     * @return Generic error page.
+     */
     @ExceptionHandler(IllegalCompetenceException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public String handleException(IllegalCompetenceException exception, Model model) {
@@ -34,6 +40,12 @@ public class ErrorHandling {
         return GENERIC_ERROR_URL;
     }
 
+    /**
+     * Handles exceptions where the person already exists.
+     * @param exception The exception to handle
+     * @param model Model containing error information
+     * @return Sign up page.
+     */
     @ExceptionHandler(PersonAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public String handleException(PersonAlreadyExistsException exception, Model model) {
@@ -44,7 +56,7 @@ public class ErrorHandling {
 
     /**
      * Generic exception handler, that handles all exceptions of type Exception
-     * @param exception The exception
+     * @param exception The exception to handle, if not handled above.
      * @return The generic error page.
      */
     @ExceptionHandler(Exception.class)
