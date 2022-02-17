@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import se.kth.recruitmentapp.domain.Person;
 import se.kth.recruitmentapp.domain.PersonAlreadyExistsException;
 import se.kth.recruitmentapp.presentation.forms.CreateAccountForm;
@@ -23,7 +24,7 @@ import javax.validation.Valid;
 @Controller
 public class RegistrationController {
     static final String REGISTER_APPLICANT_URL = "sign-up";
-    public static final String CREATE_ACCT_FORM_OBJ_NAME = "createAcctForm";
+    public static final String CREATE_ACCT_FORM_OBJ_NAME = "createAccountForm";
     public static final String SIGNUP_PAGE_URL     = "sign-up";
     @Autowired
     private PersonService personService;
@@ -38,7 +39,7 @@ public class RegistrationController {
      */
     @GetMapping("/" + SIGNUP_PAGE_URL)
     public String showSignupPageView(Model model){
-        model.addAttribute("createAccountForm", new CreateAccountForm());
+        model.addAttribute(CREATE_ACCT_FORM_OBJ_NAME, new CreateAccountForm());
         return SIGNUP_PAGE_URL;
     }
     /**
@@ -50,7 +51,7 @@ public class RegistrationController {
      * @return Login page URL in case account creation succeeds.
      */
     @PostMapping("/" + REGISTER_APPLICANT_URL)
-    public String processRegistration(@Valid CreateAccountForm createAccountForm, BindingResult bindingResult, Model model) throws PersonAlreadyExistsException {
+    public String processRegistration(@Valid CreateAccountForm createAccountForm, BindingResult bindingResult, RedirectAttributes attr, Model model) throws PersonAlreadyExistsException {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute(CREATE_ACCT_FORM_OBJ_NAME, new CreateAccountForm());
@@ -65,6 +66,8 @@ public class RegistrationController {
             personService.save(createAccountForm.toPerson(passwordEncoder, role));
         } else {
             System.out.println("Person found");
+            //attr.addFlashAttribute("org.springframework.validation.BindingResult.createAccountForm");
+            //attr.addFlashAttribute(CREATE_ACCT_FORM_OBJ_NAME, new CreateAccountForm());
             throw new PersonAlreadyExistsException("person already exists");
         }
 

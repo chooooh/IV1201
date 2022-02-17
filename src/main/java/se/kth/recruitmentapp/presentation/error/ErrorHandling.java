@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import se.kth.recruitmentapp.domain.IllegalCompetenceException;
 import se.kth.recruitmentapp.domain.PersonAlreadyExistsException;
 import se.kth.recruitmentapp.presentation.controller.RegistrationController;
@@ -34,9 +35,7 @@ public class ErrorHandling {
     @ResponseStatus(HttpStatus.CONFLICT)
     public String handleException(IllegalCompetenceException exception, Model model) {
         System.out.println("exception message: " + exception.getMessage());
-        if (exception.getMessage().contains("already")) {
-            model.addAttribute(ERROR_TYPE_KEY, COMPETENCE_EXISTS_ERROR);
-        }
+        model.addAttribute(ERROR_TYPE_KEY, COMPETENCE_EXISTS_ERROR);
         return GENERIC_ERROR_URL;
     }
 
@@ -48,10 +47,11 @@ public class ErrorHandling {
      */
     @ExceptionHandler(PersonAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
-    public String handleException(PersonAlreadyExistsException exception, Model model) {
-        model.addAttribute(RegistrationController.CREATE_ACCT_FORM_OBJ_NAME, new CreateAccountForm());
+    public String handleException(PersonAlreadyExistsException exception, RedirectAttributes attr, Model model) {
+        //model.addAllAttributes(attr.getFlashAttributes());
         model.addAttribute(ERROR_TYPE_KEY, PERSON_EXISTS_ERROR);
-        return RegistrationController.SIGNUP_PAGE_URL;
+        //return RegistrationController.SIGNUP_PAGE_URL; this does not work "Error creating bean with name "Neither BindingResult nor plain target object for bean name 'createAccountForm'..
+        return GENERIC_ERROR_URL;
     }
 
     /**
