@@ -32,7 +32,7 @@
                 <label>You can select and remove specific competences.</label>
                 <label>You can also submit your application.</label>
                 <ul th:each="profile : ${profiles}">
-                    <input type="checkbox" id="competence-to-be-removed">
+                    <input type="checkbox" id="competence-to-be-removed" th:field="*{toBeRemovedProfiles}" th:value="${profile.id}">
                         <label for="competence-to-be-removed">
                             <span th:text="${profile.competence.name}"></span>
                             <span th:text="${profile.yoe}"></span>

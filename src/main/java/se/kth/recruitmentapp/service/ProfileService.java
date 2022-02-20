@@ -54,7 +54,6 @@ public class ProfileService {
      * @param profile, the profile to be added.
      */
     public void createProfile(Profile profile) {
-        //Save the new profile
         profileRepository.save(profile);
     }
 
@@ -64,5 +63,15 @@ public class ProfileService {
      */
     public List<Profile> getProfilesByPerson(Person person) {
         return profileRepository.findProfileByPerson(person);
+    }
+
+    /**
+     * Method removes the specified profiles.
+     * @param toBeRemovedProfiles , the profiles to be removed
+     */
+    public void removeProfiles(List<Profile> toBeRemovedProfiles) {
+        for(Profile profile: toBeRemovedProfiles){
+            profileRepository.delete(profile);
+        }
     }
 }

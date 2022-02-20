@@ -17,7 +17,7 @@ import java.util.List;
 public class CompetenceForm {
     private String selectedCompetence;
     private BigDecimal yearsOfExperience;
-
+    private List<Profile>  toBeRemovedProfiles;
     //List of competences
     private List<Competence> competenceList;
     //

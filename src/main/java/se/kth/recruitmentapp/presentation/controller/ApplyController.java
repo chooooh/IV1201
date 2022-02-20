@@ -94,7 +94,7 @@ public class ApplyController {
     }
 
     /**
-     * Handles request of removing a selected competence & years of expertise
+     * Handles request of removing a selected competence(s) & years of expertise
      *
      * @param competenceForm ,the contents of the competence form.
      * @param bindingResult  ,validation of the competence form.
@@ -104,8 +104,13 @@ public class ApplyController {
     @PostMapping(value = "/" + ADD_COMPETENCE_POST_URL, params = "action=remove")
     public String removeCompetence(@Valid CompetenceForm competenceForm, BindingResult bindingResult, Model model) {
         LOGGER.info("POST/" + ADD_COMPETENCE_POST_URL+"/action=remove");
-        LOGGER.info("competence form" + competenceForm);
-
+        LOGGER.info("Profiles to be removed: " + competenceForm.getToBeRemovedProfiles());
+        profileService.removeProfiles(competenceForm.getToBeRemovedProfiles());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Person person =  (Person) auth.getPrincipal();
+        profiles = profileService.getProfilesByPerson(person);
+        model.addAttribute("profiles", profiles);
+        model.addAttribute("competenceForm", competenceForm);
         return APPLY_PAGE_URL;
     }
 
