@@ -1,8 +1,8 @@
 package se.kth.recruitmentapp.presentation.error;
 
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -18,7 +18,7 @@ import se.kth.recruitmentapp.domain.PersonAlreadyExistsException;
  */
 @Controller
 @ControllerAdvice
-public class ErrorHandling {
+public class ErrorHandling implements ErrorController {
     private enum LogType {
         ERROR,
         DEBUG
@@ -74,7 +74,6 @@ public class ErrorHandling {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String handleException(Exception exception, Model model) {
-        System.out.println("generic error handler");
         logException(exception, LogType.ERROR);
         model.addAttribute(ERROR_TYPE_KEY, GENERIC_ERROR);
         return GENERIC_ERROR_URL;
