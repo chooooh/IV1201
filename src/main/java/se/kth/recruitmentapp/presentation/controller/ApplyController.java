@@ -30,6 +30,7 @@ public class ApplyController {
     static final String ADD_COMPETENCE_POST_URL = "add-competence";
     static final String APPLY_PAGE_URL          = "apply";
     private List<Profile> profiles;
+    private Person currentPerson;
 
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ApplyController.class);
@@ -49,10 +50,10 @@ public class ApplyController {
         LOGGER.info("GET /"+ APPLY_PAGE_URL);
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Person person =  (Person) auth.getPrincipal();
+        currentPerson =  (Person) auth.getPrincipal();
 
         List<Competence> competenceList = competenceService.getAllCompetences();
-        profiles = profileService.getProfilesByPerson(person);
+        profiles = profileService.getProfilesByPerson(currentPerson);
 
         LOGGER.debug("Competence list: " + competenceList);
         CompetenceForm competenceForm = new CompetenceForm();
@@ -78,7 +79,7 @@ public class ApplyController {
         LOGGER.trace("Competence form data: " + competenceForm);
 
         if (bindingResult.hasErrors()) {
-            System.out.println("competence bindings has errors");
+           LOGGER.error("Binding errors in apply/action=add-competence");
         }
         //Fetch Competence and person
         Competence comp = competenceService.getCompetenceByName(competenceForm.getSelectedCompetence());
@@ -105,10 +106,22 @@ public class ApplyController {
     public String removeCompetence(@Valid CompetenceForm competenceForm, BindingResult bindingResult, Model model) {
         LOGGER.info("POST/" + ADD_COMPETENCE_POST_URL+"/action=remove");
         LOGGER.info("Profiles to be removed: " + competenceForm.getToBeRemovedProfiles());
-        profileService.removeProfiles(competenceForm.getToBeRemovedProfiles());
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Person person =  (Person) auth.getPrincipal();
-        profiles = profileService.getProfilesByPerson(person);
+
+        if(bindingResult.hasErrors()){
+            LOGGER.error("Binding errors in apply/action=remove");
+        }
+        //if profile has yet not been added to db remove from profiles list
+        for(Profile profile: competenceForm.getToBeRemovedProfiles()){
+            if(profile.getId() == 0){
+                profiles.remove(profile);
+                competenceForm.getToBeRemovedProfiles().remove(profile);
+            }
+        }
+        // check if there are any profiles to be removed in db
+        if(competenceForm.getToBeRemovedProfiles().size() != 0) {
+            profileService.removeProfiles(competenceForm.getToBeRemovedProfiles());
+            profiles = profileService.getProfilesByPerson(currentPerson);
+        }
         model.addAttribute("profiles", profiles);
         model.addAttribute("competenceForm", competenceForm);
         return APPLY_PAGE_URL;
@@ -126,6 +139,10 @@ public class ApplyController {
     public String saveCompetenceForm(@Valid CompetenceForm competenceForm, BindingResult bindingResult, Model model) {
         LOGGER.info("POST/" + ADD_COMPETENCE_POST_URL+"/action=save");
         LOGGER.info("competence form" + competenceForm);
+
+        if(bindingResult.hasErrors()){
+            LOGGER.error("Binding result has error in apply/action=save");
+        }
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Person person =  (Person) auth.getPrincipal();
