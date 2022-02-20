@@ -1,5 +1,8 @@
 package se.kth.recruitmentapp.presentation.error;
 
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -9,8 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import se.kth.recruitmentapp.domain.IllegalCompetenceException;
 import se.kth.recruitmentapp.domain.PersonAlreadyExistsException;
-import se.kth.recruitmentapp.presentation.controller.RegistrationController;
-import se.kth.recruitmentapp.presentation.forms.CreateAccountForm;
 
 /**
  * Handles all errors.
@@ -18,12 +19,22 @@ import se.kth.recruitmentapp.presentation.forms.CreateAccountForm;
 @Controller
 @ControllerAdvice
 public class ErrorHandling {
+    private enum LogType {
+        ERROR,
+        DEBUG
+    }
+
     private static final String GENERIC_ERROR_URL = "error";
     // these error values should map to the corresponding values in Message.properties
     private static final String PERSON_EXISTS_ERROR = "person-exists";
     private static final String COMPETENCE_EXISTS_ERROR = "competence-exists";
+    private static final String GENERIC_ERROR = "generic";
 
     public static final String ERROR_TYPE_KEY = "errorType";
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ErrorHandling.class);
+
+
 
     /**
      * Handles business rule exceptions regarding the competence domain.
@@ -34,7 +45,7 @@ public class ErrorHandling {
     @ExceptionHandler(IllegalCompetenceException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public String handleException(IllegalCompetenceException exception, Model model) {
-        System.out.println("exception message: " + exception.getMessage());
+        logException(exception, LogType.DEBUG);
         model.addAttribute(ERROR_TYPE_KEY, COMPETENCE_EXISTS_ERROR);
         return GENERIC_ERROR_URL;
     }
@@ -48,6 +59,7 @@ public class ErrorHandling {
     @ExceptionHandler(PersonAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public String handleException(PersonAlreadyExistsException exception, RedirectAttributes attr, Model model) {
+        logException(exception, LogType.DEBUG);
         //model.addAllAttributes(attr.getFlashAttributes());
         model.addAttribute(ERROR_TYPE_KEY, PERSON_EXISTS_ERROR);
         //return RegistrationController.SIGNUP_PAGE_URL; this does not work "Error creating bean with name "Neither BindingResult nor plain target object for bean name 'createAccountForm'..
@@ -55,14 +67,30 @@ public class ErrorHandling {
     }
 
     /**
-     * Generic exception handler, that handles all exceptions of type Exception
+     * Generic exception handler, that handles all exceptions to type Exception
      * @param exception The exception to handle, if not handled above.
      * @return The generic error page.
      */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String handleException(Exception exception, Model model) {
-        model.addAttribute(ERROR_TYPE_KEY, exception.getMessage());
+        System.out.println("generic error handler");
+        logException(exception, LogType.ERROR);
+        model.addAttribute(ERROR_TYPE_KEY, GENERIC_ERROR);
         return GENERIC_ERROR_URL;
+    }
+
+    private void logException(Exception exception, LogType logType) {
+        String exceptionClassName = exception.getClass().getName();
+        String exceptionMessage = exception.getMessage();
+        String msg = "Error handler received exception {}: {}";
+        switch (logType) {
+            case DEBUG:
+                LOGGER.debug(msg, exceptionClassName, exceptionMessage, exception);
+                break;
+            case ERROR:
+                LOGGER.error(msg, exceptionClassName, exceptionMessage, exception);
+                break;
+        }
     }
 }

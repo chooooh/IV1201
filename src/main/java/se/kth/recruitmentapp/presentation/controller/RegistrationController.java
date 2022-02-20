@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import se.kth.recruitmentapp.domain.Person;
 import se.kth.recruitmentapp.domain.PersonAlreadyExistsException;
+import se.kth.recruitmentapp.domain.RoleNotFoundException;
 import se.kth.recruitmentapp.presentation.forms.CreateAccountForm;
 import se.kth.recruitmentapp.presentation.forms.LoginForm;
 import se.kth.recruitmentapp.domain.Role;
@@ -51,7 +52,7 @@ public class RegistrationController {
      * @return Login page URL in case account creation succeeds.
      */
     @PostMapping("/" + REGISTER_APPLICANT_URL)
-    public String processRegistration(@Valid CreateAccountForm createAccountForm, BindingResult bindingResult, RedirectAttributes attr, Model model) throws PersonAlreadyExistsException {
+    public String processRegistration(@Valid CreateAccountForm createAccountForm, BindingResult bindingResult, Model model) throws PersonAlreadyExistsException, RoleNotFoundException {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute(CREATE_ACCT_FORM_OBJ_NAME, new CreateAccountForm());
@@ -66,8 +67,6 @@ public class RegistrationController {
             personService.save(createAccountForm.toPerson(passwordEncoder, role));
         } else {
             System.out.println("Person found");
-            //attr.addFlashAttribute("org.springframework.validation.BindingResult.createAccountForm");
-            //attr.addFlashAttribute(CREATE_ACCT_FORM_OBJ_NAME, new CreateAccountForm());
             throw new PersonAlreadyExistsException("person already exists");
         }
 

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import se.kth.recruitmentapp.domain.IllegalCompetenceException;
 import se.kth.recruitmentapp.domain.Person;
 import se.kth.recruitmentapp.domain.Role;
+import se.kth.recruitmentapp.domain.RoleNotFoundException;
 import se.kth.recruitmentapp.repository.PersonRepository;
 import se.kth.recruitmentapp.repository.RoleRepository;
 
@@ -57,13 +58,12 @@ public class PersonService {
      * @param role the specified UserRole.
      * @return the specified role
      */
-    public Role getRole(UserRole role) {
+    public Role getRole(UserRole role) throws RoleNotFoundException {
         switch (role) {
             case RECRUITER: return roleRepository.findById(Role.RECRUITER).get();
             case APPLICANT: return roleRepository.findById(Role.APPLICANT).get();
         }
-        // throw error?
-        return null;
+        throw new RoleNotFoundException(RoleNotFoundException.NOT_FOUND);
     }
 }
 
