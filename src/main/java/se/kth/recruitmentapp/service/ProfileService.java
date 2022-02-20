@@ -11,6 +11,7 @@ import se.kth.recruitmentapp.domain.Person;
 import se.kth.recruitmentapp.domain.Profile;
 import se.kth.recruitmentapp.repository.ProfileRepository;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,10 +50,11 @@ public class ProfileService {
     }
 
     /**
-     * Methods that inserts a new row into the competence_profile table.
-     * @param profile , the profile to be saved
+     * Methods adds the specified profile to the database.
+     * @param profile, the profile to be added.
      */
     public void createProfile(Profile profile) {
+        //Save the new profile
         profileRepository.save(profile);
     }
 

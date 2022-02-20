@@ -21,11 +21,11 @@ public class CompetenceForm {
     //List of competences
     private List<Competence> competenceList;
     //
-    private List<Profile> profiles;
+   // private List<Profile> profiles;
 
 
     public CompetenceForm(){
-       profiles = new ArrayList<>();
+
     }
 
 }
