@@ -10,7 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import se.kth.recruitmentapp.domain.Person;
+import se.kth.recruitmentapp.domain.PersonAlreadyExistsException;
+import se.kth.recruitmentapp.domain.RoleNotFoundException;
 import se.kth.recruitmentapp.presentation.forms.CreateAccountForm;
 import se.kth.recruitmentapp.presentation.forms.LoginForm;
 import se.kth.recruitmentapp.domain.Role;
@@ -24,9 +27,8 @@ import javax.validation.Valid;
 @Controller
 public class SignupController {
     static final String REGISTER_APPLICANT_URL = "sign-up";
-    static final String CREATE_ACCT_FORM_OBJ_NAME = "createAcctForm";
-    static final String SIGNUP_PAGE_URL     = "sign-up";
-
+    public static final String CREATE_ACCT_FORM_OBJ_NAME = "createAccountForm";
+    public static final String SIGNUP_PAGE_URL     = "sign-up";
     private static final Logger LOGGER = LoggerFactory.getLogger(ApplyController.class);
 
     @Autowired
@@ -44,6 +46,7 @@ public class SignupController {
     public String showSignupPageView(Model model){
         LOGGER.info("GET /" + SIGNUP_PAGE_URL);
         model.addAttribute("createAccountForm", new CreateAccountForm());
+        model.addAttribute(CREATE_ACCT_FORM_OBJ_NAME, new CreateAccountForm());
         return SIGNUP_PAGE_URL;
     }
     /**
@@ -55,9 +58,9 @@ public class SignupController {
      * @return Login page URL in case account creation succeeds.
      */
     @PostMapping("/" + REGISTER_APPLICANT_URL)
-    public String processRegistration(@Valid CreateAccountForm createAccountForm, BindingResult bindingResult, Model model) {
+    public String processRegistration(@Valid CreateAccountForm createAccountForm, BindingResult bindingResult, Model model) throws PersonAlreadyExistsException, RoleNotFoundException {
         LOGGER.info("POST /" + REGISTER_APPLICANT_URL);
-        LOGGER.info("create account form: " + createAccountForm);
+            LOGGER.info("create account form: " + createAccountForm);
         if (bindingResult.hasErrors()) {
             LOGGER.error("Binding result has errors in createAccountForm");
             model.addAttribute(CREATE_ACCT_FORM_OBJ_NAME, new CreateAccountForm());
@@ -65,14 +68,16 @@ public class SignupController {
         }
 
         Person person = personService.findAccountByUsername(createAccountForm.getUsername());
-        Role role = personService.getRole(PersonService.UserRole.APPLICANT);
+        Role role = personService.getRole(PersonService.UserRole.RECRUITER);
 
         if(person == null){
             LOGGER.info("No such person found. Creating new person");
             personService.save(createAccountForm.toPerson(passwordEncoder, role));
         } else {
             LOGGER.info("Person already exists");
-        }
+            System.out.println("Person found");
+            throw new PersonAlreadyExistsException("person already exists");
+         }
 
         model.addAttribute("loginForm", new LoginForm());
 

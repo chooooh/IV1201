@@ -25,8 +25,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
      * Configuration, retrieve user details.
-     * @param auth
-     * @throws Exception
+     * @param auth this parameter uses userDetailsService and the password encoder to configure authentication.
+     * @throws Exception throws any exception
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -37,13 +37,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * Configure Authorization to URLs and Login/logout logic.
      * @param http object that builds specified security configuration
-     * @throws Exception
+     * @throws Exception throws any exception
      */
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                        .antMatchers( "/login-user", "/sign-up").permitAll()
+                        .antMatchers("/login-user", "/sign-up", "/test").permitAll()
                         .antMatchers("/recruitment", "/recruitment/**").hasAuthority(ROLE_RECRUITER)
                         .antMatchers("/apply", "/add-competence").hasAuthority(ROLE_APPLICANT)
                         .anyRequest().authenticated()

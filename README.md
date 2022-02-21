@@ -13,7 +13,11 @@
   
 
 # development
-- 
+- run using maven with provided spring command
+  - ./mvnw spring-boot:run
+- or start the application using the main spring boot application, i.e. RecruitmentAppApplication.java
+- this project uses Spring Devtools. Therefore, a restart is not required for most changes.
 
-# production
+
+# deployment
 - heroku has postgres & spring support

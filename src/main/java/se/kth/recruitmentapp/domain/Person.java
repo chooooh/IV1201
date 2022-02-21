@@ -19,7 +19,6 @@ import java.util.Collection;
 @Entity
 @Data
 @Table(name = "person")
-@Component
 @NoArgsConstructor
 public class Person implements UserDetails {
 

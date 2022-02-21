@@ -8,9 +8,16 @@
 <body>
 
 <main layout:fragment="content">
-    <section>
-      <h1>An error has occurred.</h1>
-    </section>
+    <div class="container">
+        <h1 th:if="${#messages.msgOrNull('error.__${errorType}__') != null}"
+            th:text="#{error.__${errorType}__}">error type</h1>
+        <h1 th:if="${#messages.msgOrNull('error.__${errorType}__') == null}"
+            th:text="#{error.generic}">generic error type</h1>
+        <p th:if="${#messages.msgOrNull('error.__${errorType}__.info') != null}"
+           th:text="#{error.__${errorType}__.info}">error details</p>
+        <p th:if="${#messages.msgOrNull('error.__${errorType}__.info') == null}"
+           th:text="#{error.generic.info}">generic error details</p>
+    </div>
 </main>
 
 </body>
