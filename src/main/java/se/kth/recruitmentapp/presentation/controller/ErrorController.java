@@ -1,8 +1,7 @@
-package se.kth.recruitmentapp.presentation.error;
+package se.kth.recruitmentapp.presentation.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,7 +18,7 @@ import se.kth.recruitmentapp.domain.PersonAlreadyExistsException;
  */
 @Controller
 @ControllerAdvice
-public class ErrorHandling implements ErrorController {
+public class ErrorController implements org.springframework.boot.web.servlet.error.ErrorController {
     private enum LogType {
         ERROR,
         DEBUG
@@ -33,7 +32,7 @@ public class ErrorHandling implements ErrorController {
 
     public static final String ERROR_TYPE_KEY = "errorType";
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ErrorHandling.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ErrorController.class);
 
 
     /**

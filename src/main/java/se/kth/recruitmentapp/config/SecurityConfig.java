@@ -43,7 +43,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-
                         .antMatchers("/recruitment", "/recruitment/**").hasAuthority(ROLE_RECRUITER)
                         .antMatchers("/apply", "/add-competence").hasAuthority(ROLE_APPLICANT)
                         .antMatchers("/", "/**").permitAll()
@@ -52,9 +51,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                         .accessDeniedPage("/login-user")
                         .and()
-
-
-
                 .formLogin()
                         .loginPage("/login-user").permitAll()
                         .loginProcessingUrl("/login")
