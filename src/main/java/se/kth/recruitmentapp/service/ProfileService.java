@@ -66,15 +66,9 @@ public class ProfileService {
     }
 
     /**
-     * Method removes the specified profiles.
-     * @param toBeRemovedProfiles , the profiles to be removed
+     * Method removes the specified profile.
+     * @param profile , the profile to be removed
      */
-    public void removeProfiles(List<Profile> toBeRemovedProfiles) {
-        for(Profile profile: toBeRemovedProfiles){
-            profileRepository.delete(profile);
-        }
-    }
-
     public void removeProfile(Profile profile) {
         profileRepository.delete(profile);
     }

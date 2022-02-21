@@ -48,6 +48,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .antMatchers("/apply", "/add-competence").hasAuthority(ROLE_APPLICANT)
                         .anyRequest().authenticated()
                         .and()
+                .exceptionHandling()
+                        .accessDeniedPage("/login-user")
+                        .and()
+
+
 
                 .formLogin()
                         .loginPage("/login-user").permitAll()
