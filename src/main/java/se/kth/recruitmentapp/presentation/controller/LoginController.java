@@ -1,5 +1,7 @@
 package se.kth.recruitmentapp.presentation.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,9 @@ import javax.validation.Valid;
 public class LoginController {
     static final String LOGIN_PAGE_URL      = "login-user";
     static final String LOGIN_SUCCESS_URL    = "login-success";
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ApplyController.class);
+
     /**
      * A get request for the Login page.
      * @param model Model objects used by the page
@@ -27,6 +32,7 @@ public class LoginController {
      */
     @GetMapping("/" + LOGIN_PAGE_URL)
     public String showLoginPageView(Model model){
+        LOGGER.info("GET /" + LOGIN_PAGE_URL);
         model.addAttribute("loginForm", new LoginForm());
         return LOGIN_PAGE_URL;
     }
@@ -43,12 +49,17 @@ public class LoginController {
     public String showWelcomePageView(@Valid HttpServletRequest request){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Person person = (Person) auth.getPrincipal();
+        LOGGER.info("GET /" + LOGIN_SUCCESS_URL);
+        LOGGER.info("Person: " + person.getId() + " " + person.getUsername() + " ROLE: " + person.getRole().getName());
 
         if(person.getRole().getName().equals("applicant")){
-            return "redirect:/" + ApplicationController.APPLY_PAGE_URL;
+            LOGGER.info("redirect:/" + ApplyController.APPLY_PAGE_URL);
+            return "redirect:/" + ApplyController.APPLY_PAGE_URL;
         } else if (person.getRole().getName().equals("recruiter")){
+            LOGGER.info("redirect:/" + RecruitmentController.RECRUITMENT_URL);
             return "redirect:/" + RecruitmentController.RECRUITMENT_URL;
         }
+        LOGGER.error("ERROR successful login but no role set");
         return "error";
     }
 }

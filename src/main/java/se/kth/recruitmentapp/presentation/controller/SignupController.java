@@ -1,6 +1,8 @@
 package se.kth.recruitmentapp.presentation.controller;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,10 +22,13 @@ import javax.validation.Valid;
  * Handles all HTTP routes to all registration related operations.
  */
 @Controller
-public class RegistrationController {
+public class SignupController {
     static final String REGISTER_APPLICANT_URL = "sign-up";
     static final String CREATE_ACCT_FORM_OBJ_NAME = "createAcctForm";
     static final String SIGNUP_PAGE_URL     = "sign-up";
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ApplyController.class);
+
     @Autowired
     private PersonService personService;
     @Autowired
@@ -37,6 +42,7 @@ public class RegistrationController {
      */
     @GetMapping("/" + SIGNUP_PAGE_URL)
     public String showSignupPageView(Model model){
+        LOGGER.info("GET /" + SIGNUP_PAGE_URL);
         model.addAttribute("createAccountForm", new CreateAccountForm());
         return SIGNUP_PAGE_URL;
     }
@@ -50,8 +56,10 @@ public class RegistrationController {
      */
     @PostMapping("/" + REGISTER_APPLICANT_URL)
     public String processRegistration(@Valid CreateAccountForm createAccountForm, BindingResult bindingResult, Model model) {
-
+        LOGGER.info("POST /" + REGISTER_APPLICANT_URL);
+        LOGGER.info("create account form: " + createAccountForm);
         if (bindingResult.hasErrors()) {
+            LOGGER.error("Binding result has errors in createAccountForm");
             model.addAttribute(CREATE_ACCT_FORM_OBJ_NAME, new CreateAccountForm());
             return REGISTER_APPLICANT_URL;
         }
@@ -60,10 +68,10 @@ public class RegistrationController {
         Role role = personService.getRole(PersonService.UserRole.APPLICANT);
 
         if(person == null){
-            System.out.println("No such person found!");
+            LOGGER.info("No such person found. Creating new person");
             personService.save(createAccountForm.toPerson(passwordEncoder, role));
         } else {
-            System.out.println("Person found");
+            LOGGER.info("Person already exists");
         }
 
         model.addAttribute("loginForm", new LoginForm());

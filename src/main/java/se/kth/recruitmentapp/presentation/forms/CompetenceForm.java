@@ -2,10 +2,16 @@ package se.kth.recruitmentapp.presentation.forms;
 
 import lombok.Data;
 import se.kth.recruitmentapp.domain.Competence;
+<<<<<<< HEAD
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+=======
+import se.kth.recruitmentapp.domain.Profile;
+
+import java.math.BigDecimal;
+>>>>>>> 9fb2aa017eb71b9cfd9dd705f9eab2167bc7ded7
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,28 +23,25 @@ import java.util.List;
 @Data
 public class CompetenceForm {
     private String selectedCompetence;
+<<<<<<< HEAD
     @NotNull
     @NotBlank(message = "{applicant-apply.application-yoe.missing}")
     @Pattern(regexp = "^-(?!0*\\.?0+$)\\d*\\.?\\d+$", message = "{applicant-apply.application-yoe.negative")
     @Pattern(regexp = "^(\\d)*(\\.)?([0-9]{1})?$", message = "{applicant.apply.application.yoe.decimals")
     private double yearsOfExperience;
 
+=======
+    private BigDecimal yearsOfExperience;
+    private List<Profile>  toBeRemovedProfiles;
+>>>>>>> 9fb2aa017eb71b9cfd9dd705f9eab2167bc7ded7
     //List of competences
     private List<Competence> competenceList;
-    private List<String> competences;
+    //
+   // private List<Profile> profiles;
 
-    /**
-     * Method that creates a string of the specified name and years,
-     * it adds the created string to a list of such strings called competences.
-     * 
-     * @param name ,the name of the competence
-     * @param years ,years of experience
-     */
-    public void addCompetence(String name, double years) {
-        if(competences == null){
-            competences = new ArrayList<>();
-        }
-       competences.add(name + " Years: " + years);
+
+    public CompetenceForm(){
+
     }
 
 }
