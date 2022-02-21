@@ -11,6 +11,9 @@
     <div class="card-body">
         <h1 class="card-title">Apply</h1>
         <p class="card-text">This is the application page!</p>
+        <div class="alert alert-warning" role="alert" th:if="${errorDuplicateProfiles}">
+            <span th:text="${errorDuplicateProfiles}"></span>
+        </div>
         <form th:action="@{/add-competence}" th:object="${competenceForm}" method="post">
             <div class="form-group row">
                 <label for="application-competence" class="col-sm-2 col-form-label" th:text="#{applicant-apply.application-competence}">Competence:</label>
@@ -32,7 +35,7 @@
                 <label>You can select and remove specific competences.</label>
                 <label>You can also submit your application.</label>
                 <ul th:each="profile : ${profiles}">
-                    <input type="checkbox" id="competence-to-be-removed" th:field="*{toBeRemovedProfiles}" th:value="${profile.id}">
+                    <input type="checkbox" id="competence-to-be-removed" th:field="*{toBeRemovedProfileNames}" th:value="${profile.competence.name}">
                         <label for="competence-to-be-removed">
                             <span th:text="${profile.competence.name}"></span>
                             <span th:text="${profile.yoe}"></span>

@@ -5,7 +5,6 @@ import se.kth.recruitmentapp.domain.Competence;
 import se.kth.recruitmentapp.domain.Profile;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +16,7 @@ import java.util.List;
 public class CompetenceForm {
     private String selectedCompetence;
     private BigDecimal yearsOfExperience;
-    private List<Profile>  toBeRemovedProfiles;
+    private List<String>  toBeRemovedProfileNames;
     //List of competences
     private List<Competence> competenceList;
     //

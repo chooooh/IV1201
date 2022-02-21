@@ -25,6 +25,16 @@ public class LoginController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ApplyController.class);
 
     /**
+     * A get request on root, redirects to login page
+     * @param model Model objects used by the page
+     * @return redirect to login-user
+     */
+    @GetMapping("/")
+    public String redirectToLoginPage(Model model){
+        return "redirect:/" + LOGIN_PAGE_URL;
+    }
+
+    /**
      * A get request for the Login page.
      * @param model Model objects used by the page
      * @return the login page url.

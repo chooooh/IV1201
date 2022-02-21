@@ -74,4 +74,8 @@ public class ProfileService {
             profileRepository.delete(profile);
         }
     }
+
+    public void removeProfile(Profile profile) {
+        profileRepository.delete(profile);
+    }
 }
