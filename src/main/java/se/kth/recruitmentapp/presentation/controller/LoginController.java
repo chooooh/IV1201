@@ -11,6 +11,7 @@ import se.kth.recruitmentapp.domain.Role;
 import se.kth.recruitmentapp.presentation.forms.LoginForm;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 /**
  * Handles all HTTP routes to all login related operations
@@ -39,7 +40,7 @@ public class LoginController {
      * @return The apply page url or recruitment page url, if neither then error page.
      */
     @GetMapping("/"+ LOGIN_SUCCESS_URL)
-    public String showWelcomePageView(HttpServletRequest request){
+    public String showWelcomePageView(@Valid HttpServletRequest request){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Person person = (Person) auth.getPrincipal();
 

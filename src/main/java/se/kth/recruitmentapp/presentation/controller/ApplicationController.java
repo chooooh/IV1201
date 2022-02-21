@@ -18,6 +18,7 @@ import java.util.List;
 public class ApplicationController {
     static final String ADD_COMPETENCE_POST_URL = "add-competence";
     static final String APPLY_PAGE_URL          = "apply";
+    static final String ADD_COMP_FORM_OBJ_NAME  = "competenceForm";
 
     @Autowired
     private CompetenceService competenceService;
@@ -41,15 +42,16 @@ public class ApplicationController {
      * Handles request of adding competence & years of expertise
      * to the Competence form view.
      *
-     * @param competenceForm ,the contents of the competence form.
-     * @param bindingResult  ,validation of the competence form.
-     * @param model          ,model objects used by the page.
-     * @return
+     * @param competenceForm The contents of the competence form.
+     * @param bindingResult  Validation of the competence form.
+     * @param model          Model objects used by the page.
+     * @return Apply page URL in case a competence is successfully added.
      */
     @PostMapping("/" + ADD_COMPETENCE_POST_URL)
     public String updateCompetenceForm(@Valid CompetenceForm competenceForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            System.out.println("competence bindings has errors");
+            model.addAttribute(ADD_COMP_FORM_OBJ_NAME, new CompetenceForm());
+            return ADD_COMPETENCE_POST_URL;
         }
 
         competenceForm.addCompetence(competenceForm.getSelectedCompetence(), competenceForm.getYearsOfExperience());

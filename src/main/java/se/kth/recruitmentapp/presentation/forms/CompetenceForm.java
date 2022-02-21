@@ -2,6 +2,10 @@ package se.kth.recruitmentapp.presentation.forms;
 
 import lombok.Data;
 import se.kth.recruitmentapp.domain.Competence;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +17,10 @@ import java.util.List;
 @Data
 public class CompetenceForm {
     private String selectedCompetence;
+    @NotNull
+    @NotBlank(message = "{applicant-apply.application-yoe.missing}")
+    @Pattern(regexp = "^-(?!0*\\.?0+$)\\d*\\.?\\d+$", message = "{applicant-apply.application-yoe.negative")
+    @Pattern(regexp = "^(\\d)*(\\.)?([0-9]{1})?$", message = "{applicant.apply.application.yoe.decimals")
     private double yearsOfExperience;
 
     //List of competences

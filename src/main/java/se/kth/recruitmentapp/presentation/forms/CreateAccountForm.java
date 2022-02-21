@@ -5,10 +5,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import se.kth.recruitmentapp.domain.Person;
 import se.kth.recruitmentapp.domain.Role;
 import javax.validation.constraints.*;
-import java.util.Optional;
 
 /**
- * A form for validation control. The appropriate validations checks are implemented here.
+ * A form bean for account creation.
+ * It includes validation control. The appropriate validations checks are implemented here.
  */
 @Data
 public class CreateAccountForm {
