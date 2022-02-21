@@ -120,21 +120,20 @@ public class ApplyController {
             LOGGER.error("Binding errors in apply/action=remove");
         }
 
-        //if profile has yet not been added to db remove from profiles list
-        removeProfile(competenceForm.getToBeRemovedProfileNames());
 
-        /*
-        // check if there are any profiles to be removed in db
-        if(competenceForm.getToBeRemovedProfiles().size() != 0) {
-            profileService.removeProfiles(competenceForm.getToBeRemovedProfiles());
-            profiles = profileService.getProfilesByPerson(currentPerson);
-        }*/
+        removeProfile(competenceForm.getToBeRemovedProfileNames());
 
         model.addAttribute("profiles", profiles);
         model.addAttribute("competenceForm", competenceForm);
         return APPLY_PAGE_URL;
     }
 
+    /**
+     * This method is private, it used for removing profiles from both db and the local profiles list.
+     *
+     * @param toBeRemovedProfileNames , the names of the profiles to be removed.
+     *
+     */
     private void removeProfile(List<String> toBeRemovedProfileNames) {
         List<Profile> toBeRemoved = new ArrayList<>();
         for(int i = 0; i < profiles.size(); i++){
