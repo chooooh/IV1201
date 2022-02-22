@@ -8,16 +8,16 @@
   - CREATE DATABASE recruitment;
   - \c recruitment;
   - \i /host_files/existing-database.sql;
-## use adminer for database management, perhaps adminer
+  - 
+## use adminer for database management
 - docker run --name adminer --link IV1201psql:db -p 8050:8080 -d adminer
-  
+
+## add database from sql file
+- add heroku postgres as addon
+- heroku pg:psql --app YOUR_APP_NAME_HERE < existing-database.sql
 
 # development
-- run using maven with provided spring command
-  - ./mvnw spring-boot:run
-- or start the application using the main spring boot application, i.e. RecruitmentAppApplication.java
-- this project uses Spring Devtools. Therefore, a restart is not required for most changes.
+- 
 
-
-# deployment
+# production
 - heroku has postgres & spring support
