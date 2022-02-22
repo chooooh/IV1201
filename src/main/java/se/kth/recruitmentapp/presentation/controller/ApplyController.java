@@ -17,6 +17,7 @@ import se.kth.recruitmentapp.service.CompetenceService;
 import se.kth.recruitmentapp.service.ProfileService;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -78,6 +79,9 @@ public class ApplyController {
 
         if (bindingResult.hasErrors()) {
            LOGGER.error("Binding errors in apply/action=add-competence");
+           model.addAttribute("competenceForm", competenceForm);
+           model.addAttribute("profiles", profiles);
+           return APPLY_PAGE_URL;
         }
         //Fetch Competence and person
         Competence comp = competenceService.getCompetenceByName(competenceForm.getSelectedCompetence());
@@ -94,7 +98,7 @@ public class ApplyController {
         if(addCompetence){
             Profile profile = new Profile();
             profile.setCompetence(comp);
-            profile.setYoe(competenceForm.getYearsOfExperience());
+            profile.setYoe(new BigDecimal(competenceForm.getYearsOfExperience()));
             profiles.add(profile);
         }
 
@@ -167,6 +171,9 @@ public class ApplyController {
 
         if(bindingResult.hasErrors()){
             LOGGER.error("Binding result has error in apply/action=save");
+            model.addAttribute("competenceForm", competenceForm);
+            model.addAttribute("profiles", profiles);
+            return APPLY_PAGE_URL;
         }
 
         for(Profile profile: profiles){

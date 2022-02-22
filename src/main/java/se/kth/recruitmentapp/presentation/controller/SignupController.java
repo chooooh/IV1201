@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import se.kth.recruitmentapp.domain.Person;
 import se.kth.recruitmentapp.domain.PersonAlreadyExistsException;
 import se.kth.recruitmentapp.domain.RoleNotFoundException;
@@ -63,7 +62,7 @@ public class SignupController {
             LOGGER.info("create account form: " + createAccountForm);
         if (bindingResult.hasErrors()) {
             LOGGER.error("Binding result has errors in createAccountForm");
-            model.addAttribute(CREATE_ACCT_FORM_OBJ_NAME, new CreateAccountForm());
+            model.addAttribute(CREATE_ACCT_FORM_OBJ_NAME, createAccountForm);
             return REGISTER_APPLICANT_URL;
         }
 
