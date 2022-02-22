@@ -67,17 +67,8 @@ public class SignupController {
             return REGISTER_APPLICANT_URL;
         }
 
-        Person person = personService.findAccountByUsername(createAccountForm.getUsername());
         Role role = personService.getRole(PersonService.UserRole.RECRUITER);
-
-        if(person == null){
-            LOGGER.info("No such person found. Creating new person");
-            personService.save(createAccountForm.toPerson(passwordEncoder, role));
-        } else {
-            LOGGER.info("Person already exists");
-            System.out.println("Person found");
-            throw new PersonAlreadyExistsException("person already exists");
-         }
+        personService.createPerson(createAccountForm.toPerson(passwordEncoder, role));
 
         model.addAttribute("loginForm", new LoginForm());
 

@@ -10,7 +10,6 @@ public class PersonAlreadyExistsException extends Exception {
     /**
      * Constructs a new instance with the message.
      * @param message Message describing the exception
-     * @param bindingResult
      */
     public PersonAlreadyExistsException(String message) {
         super(message);
