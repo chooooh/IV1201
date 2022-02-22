@@ -17,7 +17,6 @@
 - heroku pg:psql --app YOUR_APP_NAME_HERE < existing-database.sql
 
 # development
-- 
 
 # production
 - heroku has postgres & spring support
