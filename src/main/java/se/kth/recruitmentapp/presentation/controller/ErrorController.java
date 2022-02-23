@@ -29,9 +29,8 @@ public class ErrorController implements org.springframework.boot.web.servlet.err
     private static final String PERSON_EXISTS_ERROR = "person-exists";
     private static final String COMPETENCE_EXISTS_ERROR = "competence-exists";
     private static final String GENERIC_ERROR = "generic";
-
     public static final String ERROR_TYPE_KEY = "errorType";
-
+    private static final String LOGGING_MESSAGE = "Error handler received exception {}: {}";
     private static final Logger LOGGER = LoggerFactory.getLogger(ErrorController.class);
 
 
@@ -90,13 +89,12 @@ public class ErrorController implements org.springframework.boot.web.servlet.err
     private void logException(Exception exception, LogType logType) {
         String exceptionClassName = exception.getClass().getName();
         String exceptionMessage = exception.getMessage();
-        String msg = "Error handler received exception {}: {}";
         switch (logType) {
             case DEBUG:
-                LOGGER.debug(msg, exceptionClassName, exceptionMessage, exception);
+                LOGGER.debug(LOGGING_MESSAGE, exceptionClassName, exceptionMessage, exception);
                 break;
             case ERROR:
-                LOGGER.error(msg, exceptionClassName, exceptionMessage, exception);
+                LOGGER.error(LOGGING_MESSAGE, exceptionClassName, exceptionMessage, exception);
                 break;
         }
     }
