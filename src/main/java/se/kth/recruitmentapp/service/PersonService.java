@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import se.kth.recruitmentapp.domain.exceptions.IllegalCompetenceException;
+import se.kth.recruitmentapp.domain.exceptions.PersonAlreadyExistsException;
 import se.kth.recruitmentapp.domain.models.Person;
 import se.kth.recruitmentapp.domain.models.Role;
 import se.kth.recruitmentapp.domain.exceptions.RoleNotFoundException;
@@ -65,5 +66,20 @@ public class PersonService {
         throw new RoleNotFoundException(RoleNotFoundException.NOT_FOUND);
     }
 
+    /**
+     * Adds the specified person to the database
+     * @param person the person to save
+     * @throws PersonAlreadyExistsException If a person with the specified already exists
+     */
+    public void createPerson(Person person) throws PersonAlreadyExistsException {
+        Person p = personRepository.findByUsername(person.getUsername());
+
+        if(p == null) {
+            personRepository.save(person);
+            return;
+        }
+
+        throw new PersonAlreadyExistsException("person already exists");
+    }
 }
 

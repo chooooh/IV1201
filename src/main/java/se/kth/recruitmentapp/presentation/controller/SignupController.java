@@ -10,9 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import se.kth.recruitmentapp.domain.models.Person;
 import se.kth.recruitmentapp.domain.exceptions.PersonAlreadyExistsException;
 import se.kth.recruitmentapp.domain.exceptions.RoleNotFoundException;
+
 import se.kth.recruitmentapp.presentation.forms.CreateAccountForm;
 import se.kth.recruitmentapp.presentation.forms.LoginForm;
 import se.kth.recruitmentapp.domain.models.Role;
@@ -57,26 +59,18 @@ public class SignupController {
      * @return Login page URL in case account creation succeeds.
      */
     @PostMapping("/" + REGISTER_APPLICANT_URL)
-    public String processRegistration(@Valid CreateAccountForm createAccountForm, BindingResult bindingResult, Model model) throws PersonAlreadyExistsException, RoleNotFoundException {
+    public String processRegistration(@Valid CreateAccountForm createAccountForm, BindingResult bindingResult, Model model)
+            throws PersonAlreadyExistsException, RoleNotFoundException {
         LOGGER.info("POST /" + REGISTER_APPLICANT_URL);
             LOGGER.info("create account form: " + createAccountForm);
         if (bindingResult.hasErrors()) {
             LOGGER.error("Binding result has errors in createAccountForm");
-            model.addAttribute(CREATE_ACCT_FORM_OBJ_NAME, new CreateAccountForm());
+            model.addAttribute(CREATE_ACCT_FORM_OBJ_NAME, createAccountForm);
             return REGISTER_APPLICANT_URL;
         }
 
-        Person person = personService.findAccountByUsername(createAccountForm.getUsername());
-
-
-        if(person == null){
-            LOGGER.info("No such person found. Creating new person");
-            personService.save(createAccountForm.toPerson(passwordEncoder, role));
-        } else {
-            LOGGER.info("Person already exists");
-            System.out.println("Person found");
-            throw new PersonAlreadyExistsException("person already exists");
-         }
+        Role role = personService.getRole(PersonService.UserRole.RECRUITER);
+        personService.createPerson(createAccountForm.toPerson(passwordEncoder, role));
 
         model.addAttribute("loginForm", new LoginForm());
 

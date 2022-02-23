@@ -3,7 +3,8 @@ package se.kth.recruitmentapp.presentation.forms;
 import lombok.Data;
 import se.kth.recruitmentapp.domain.models.Competence;
 import se.kth.recruitmentapp.domain.models.Profile;
-import java.math.BigDecimal;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 
 /**
@@ -15,19 +16,14 @@ import java.util.List;
 public class CompetenceForm {
     private String selectedCompetence;
 
-    //@NotNull
-    //@NotBlank(message = "{applicant-apply.application-yoe.missing}")
-    //@Pattern(regexp = "^-(?!0*\\.?0+$)\\d*\\.?\\d+$", message = "{applicant-apply.application-yoe.negative")
-    //@Pattern(regexp = "^(\\d)*(\\.)?([0-9]{1})?$", message = "{applicant.apply.application.yoe.decimals")
-    private BigDecimal yearsOfExperience;
-
-    private List<String>  toBeRemovedProfileNames;
-    private List<Profile>  toBeRemovedProfiles;
-    //List of competences
+    @NotNull(message = "{applicant-apply.application-yoe.missing}")
+    @Pattern(regexp = "^[1-9]\\.?[1-9]?$", message = "{applicant-apply.application-yoe.invalid}")
+    private String yearsOfExperience;
+    private List<String> toBeRemovedProfileNames;
+    private List<Profile> toBeRemovedProfiles;
     private List<Competence> competenceList;
 
-
-    public CompetenceForm(){
+    public CompetenceForm() {
 
     }
 
