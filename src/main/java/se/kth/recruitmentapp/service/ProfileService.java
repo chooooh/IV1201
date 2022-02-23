@@ -6,12 +6,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import se.kth.recruitmentapp.domain.Competence;
-import se.kth.recruitmentapp.domain.Person;
-import se.kth.recruitmentapp.domain.Profile;
+import se.kth.recruitmentapp.domain.models.Person;
+import se.kth.recruitmentapp.domain.models.Profile;
 import se.kth.recruitmentapp.repository.ProfileRepository;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 

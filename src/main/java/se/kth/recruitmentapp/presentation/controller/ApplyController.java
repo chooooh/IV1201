@@ -11,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import se.kth.recruitmentapp.domain.*;
+import se.kth.recruitmentapp.domain.models.Competence;
+import se.kth.recruitmentapp.domain.models.Person;
+import se.kth.recruitmentapp.domain.models.Profile;
 import se.kth.recruitmentapp.presentation.forms.CompetenceForm;
 import se.kth.recruitmentapp.service.CompetenceService;
 import se.kth.recruitmentapp.service.ProfileService;
@@ -63,8 +65,8 @@ public class ApplyController {
     }
 
     /**
-     * Handles request of adding competence & years of expertise
-     * to the Competence form view.
+     * Handles request of adding a new profile to the local list of added profiles.
+     * The profile added, provided in the competenceForm, consists of a competence name and years of experience.
      *
      * @param competenceForm        ,the contents of the competence form.
      * @param bindingResult         ,validation of the competence form.
@@ -108,7 +110,9 @@ public class ApplyController {
     }
 
     /**
-     * Handles request of removing a selected competence(s) & years of expertise
+     * Handles request of removing a profile from the local list of profiles.
+     * The profile to be removed may be a "true" profile with all of its fields set, loaded from the db
+     * or the profile only has competence name and years of experience set.
      *
      * @param competenceForm ,the contents of the competence form.
      * @param bindingResult  ,validation of the competence form.
@@ -133,7 +137,7 @@ public class ApplyController {
     }
 
     /**
-     * This method is private, it used for removing profiles from both db and the local profiles list.
+     * This method is private and is used for removing profiles from both db and the local profiles list.
      *
      * @param toBeRemovedProfileNames , the names of the profiles to be removed.
      *
@@ -157,7 +161,7 @@ public class ApplyController {
     }
 
     /**
-     * Handles request of saving selected competences & years of expertise
+     * Handles request of saving the selected profiles in the local profiles list.
      *
      * @param competenceForm ,the contents of the competence form.
      * @param bindingResult  ,validation of the competence form.

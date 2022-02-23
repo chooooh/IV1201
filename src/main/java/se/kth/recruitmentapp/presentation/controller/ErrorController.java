@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import se.kth.recruitmentapp.domain.IllegalCompetenceException;
-import se.kth.recruitmentapp.domain.PersonAlreadyExistsException;
+import se.kth.recruitmentapp.domain.exceptions.IllegalCompetenceException;
+import se.kth.recruitmentapp.domain.exceptions.PersonAlreadyExistsException;
 
 /**
  * Handles all errors.

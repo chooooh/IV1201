@@ -1,7 +1,9 @@
-package se.kth.recruitmentapp.domain;
+package se.kth.recruitmentapp.domain.models;
 
 import lombok.Data;
 import org.springframework.stereotype.Component;
+import se.kth.recruitmentapp.domain.models.Competence;
+import se.kth.recruitmentapp.domain.models.Person;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

@@ -1,4 +1,4 @@
-package se.kth.recruitmentapp.domain;
+package se.kth.recruitmentapp.domain.exceptions;
 
 import org.springframework.validation.BindingResult;
 

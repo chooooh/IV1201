@@ -10,12 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import se.kth.recruitmentapp.domain.Person;
-import se.kth.recruitmentapp.domain.PersonAlreadyExistsException;
-import se.kth.recruitmentapp.domain.RoleNotFoundException;
+
+import se.kth.recruitmentapp.domain.models.Person;
+import se.kth.recruitmentapp.domain.exceptions.PersonAlreadyExistsException;
+import se.kth.recruitmentapp.domain.exceptions.RoleNotFoundException;
+
 import se.kth.recruitmentapp.presentation.forms.CreateAccountForm;
 import se.kth.recruitmentapp.presentation.forms.LoginForm;
-import se.kth.recruitmentapp.domain.Role;
+import se.kth.recruitmentapp.domain.models.Role;
 import se.kth.recruitmentapp.service.PersonService;
 import javax.validation.Valid;
 
@@ -57,7 +59,8 @@ public class SignupController {
      * @return Login page URL in case account creation succeeds.
      */
     @PostMapping("/" + REGISTER_APPLICANT_URL)
-    public String processRegistration(@Valid CreateAccountForm createAccountForm, BindingResult bindingResult, Model model) throws PersonAlreadyExistsException, RoleNotFoundException {
+    public String processRegistration(@Valid CreateAccountForm createAccountForm, BindingResult bindingResult, Model model)
+            throws PersonAlreadyExistsException, RoleNotFoundException {
         LOGGER.info("POST /" + REGISTER_APPLICANT_URL);
             LOGGER.info("create account form: " + createAccountForm);
         if (bindingResult.hasErrors()) {
@@ -66,7 +69,7 @@ public class SignupController {
             return REGISTER_APPLICANT_URL;
         }
 
-        Role role = personService.getRole(PersonService.UserRole.RECRUITER);
+        Role role = personService.getRole(PersonService.UserRole.APPLICANT);
         personService.createPerson(createAccountForm.toPerson(passwordEncoder, role));
 
         model.addAttribute("loginForm", new LoginForm());

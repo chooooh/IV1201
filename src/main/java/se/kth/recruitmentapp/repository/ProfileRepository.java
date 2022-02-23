@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import se.kth.recruitmentapp.domain.Person;
-import se.kth.recruitmentapp.domain.Profile;
+import se.kth.recruitmentapp.domain.models.Person;
+import se.kth.recruitmentapp.domain.models.Profile;
 
 import java.util.List;
 

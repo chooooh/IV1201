@@ -1,10 +1,10 @@
 package se.kth.recruitmentapp.presentation.forms;
 
 import lombok.Data;
-import se.kth.recruitmentapp.domain.Competence;
+import se.kth.recruitmentapp.domain.models.Competence;
+import se.kth.recruitmentapp.domain.models.Profile;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import se.kth.recruitmentapp.domain.Profile;
 import java.util.List;
 
 /**

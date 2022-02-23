@@ -4,7 +4,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import se.kth.recruitmentapp.domain.Availability;
+import se.kth.recruitmentapp.domain.models.Availability;
 
 /**
  * Contains database access methods regarding availability

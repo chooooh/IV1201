@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import se.kth.recruitmentapp.config.SecurityConfig;
-import se.kth.recruitmentapp.domain.Person;
-import se.kth.recruitmentapp.domain.Role;
+import se.kth.recruitmentapp.domain.models.Person;
+import se.kth.recruitmentapp.domain.models.Role;
 import se.kth.recruitmentapp.presentation.forms.LoginForm;
 
 import javax.servlet.http.HttpServletRequest;
