@@ -2,8 +2,8 @@ package se.kth.recruitmentapp.presentation.forms;
 
 import lombok.Data;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import se.kth.recruitmentapp.domain.Person;
-import se.kth.recruitmentapp.domain.Role;
+import se.kth.recruitmentapp.domain.models.Person;
+import se.kth.recruitmentapp.domain.models.Role;
 import javax.validation.constraints.*;
 
 /**

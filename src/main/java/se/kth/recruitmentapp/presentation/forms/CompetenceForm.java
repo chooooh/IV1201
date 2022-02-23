@@ -1,11 +1,8 @@
 package se.kth.recruitmentapp.presentation.forms;
 
 import lombok.Data;
-import se.kth.recruitmentapp.domain.Competence;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import se.kth.recruitmentapp.domain.Profile;
+import se.kth.recruitmentapp.domain.models.Competence;
+import se.kth.recruitmentapp.domain.models.Profile;
 import java.math.BigDecimal;
 import java.util.List;
 

@@ -10,13 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import se.kth.recruitmentapp.domain.Person;
-import se.kth.recruitmentapp.domain.PersonAlreadyExistsException;
-import se.kth.recruitmentapp.domain.RoleNotFoundException;
+import se.kth.recruitmentapp.domain.models.Person;
+import se.kth.recruitmentapp.domain.exceptions.PersonAlreadyExistsException;
+import se.kth.recruitmentapp.domain.exceptions.RoleNotFoundException;
 import se.kth.recruitmentapp.presentation.forms.CreateAccountForm;
 import se.kth.recruitmentapp.presentation.forms.LoginForm;
-import se.kth.recruitmentapp.domain.Role;
+import se.kth.recruitmentapp.domain.models.Role;
 import se.kth.recruitmentapp.service.PersonService;
 import javax.validation.Valid;
 
@@ -68,7 +67,7 @@ public class SignupController {
         }
 
         Person person = personService.findAccountByUsername(createAccountForm.getUsername());
-        Role role = personService.getRole(PersonService.UserRole.RECRUITER);
+
 
         if(person == null){
             LOGGER.info("No such person found. Creating new person");

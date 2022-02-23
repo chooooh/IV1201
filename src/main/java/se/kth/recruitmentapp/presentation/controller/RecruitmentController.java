@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import se.kth.recruitmentapp.domain.Profile;
+import se.kth.recruitmentapp.domain.models.Profile;
 import se.kth.recruitmentapp.service.ProfileService;
 
 import java.util.List;

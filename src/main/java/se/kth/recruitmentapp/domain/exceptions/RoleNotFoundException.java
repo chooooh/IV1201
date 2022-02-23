@@ -1,4 +1,4 @@
-package se.kth.recruitmentapp.domain;
+package se.kth.recruitmentapp.domain.exceptions;
 
 /**
  * Thrown when Role is not found

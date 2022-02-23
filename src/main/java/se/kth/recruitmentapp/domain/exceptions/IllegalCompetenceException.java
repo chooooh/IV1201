@@ -1,4 +1,4 @@
-package se.kth.recruitmentapp.domain;
+package se.kth.recruitmentapp.domain.exceptions;
 
 /**
  * Thrown when applicants does not follow business rules regarding

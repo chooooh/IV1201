@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import se.kth.recruitmentapp.domain.IllegalCompetenceException;
-import se.kth.recruitmentapp.domain.Person;
-import se.kth.recruitmentapp.domain.Role;
-import se.kth.recruitmentapp.domain.RoleNotFoundException;
+import se.kth.recruitmentapp.domain.exceptions.IllegalCompetenceException;
+import se.kth.recruitmentapp.domain.models.Person;
+import se.kth.recruitmentapp.domain.models.Role;
+import se.kth.recruitmentapp.domain.exceptions.RoleNotFoundException;
 import se.kth.recruitmentapp.repository.PersonRepository;
 import se.kth.recruitmentapp.repository.RoleRepository;
 
