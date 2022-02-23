@@ -69,7 +69,7 @@ public class SignupController {
             return REGISTER_APPLICANT_URL;
         }
 
-        Role role = personService.getRole(PersonService.UserRole.RECRUITER);
+        Role role = personService.getRole(PersonService.UserRole.APPLICANT);
         personService.createPerson(createAccountForm.toPerson(passwordEncoder, role));
 
         model.addAttribute("loginForm", new LoginForm());
