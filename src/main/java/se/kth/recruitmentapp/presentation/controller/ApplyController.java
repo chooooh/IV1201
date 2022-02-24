@@ -140,7 +140,6 @@ public class ApplyController {
      * This method is private and is used for removing profiles from both db and the local profiles list.
      *
      * @param toBeRemovedProfileNames , the names of the profiles to be removed.
-     *
      */
     private void removeProfile(List<String> toBeRemovedProfileNames) {
         List<Profile> toBeRemoved = new ArrayList<>();
