@@ -27,7 +27,7 @@ public class AppConfig implements WebMvcConfigurer {
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setBasenames("classpath:/i18n/Messages", "classpath:/i18n/ValidationMessages");
-        messageSource.setDefaultEncoding("UTF-8");
+        messageSource.setDefaultEncoding("ISO-8859-1");
         return messageSource;
     }
 

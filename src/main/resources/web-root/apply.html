@@ -28,7 +28,7 @@
                 </div>
             </div>
             <input th:field="*{competenceList}" type="hidden"/>
-            <button type="submit" name="action" class="btn btn-primary" value="add-competence">Add Competence</button>
+            <button type="submit" name="action" class="btn btn-primary" value="add-competence" th:text="#{applicant-apply.application-button-add}"></button>
             <section>
                 <label th:text="#{applicant-apply.application-info1}"></label>
                 <label th:text="#{applicant-apply.application-info2}"></label>
@@ -42,8 +42,8 @@
                     </input>
                 </ul>
             </section>
-            <button type="submit" name="action" class="btn btn-primary" value="remove">Remove</button>
-            <button type="submit" name="action" class="btn btn-primary" value="save">Save</button>
+            <button type="submit" name="action" class="btn btn-primary" value="remove" th:text="#{applicant-apply.application-button-remove}"></button>
+            <button type="submit" name="action" class="btn btn-primary" value="save" th:text="#{applicant-apply.application-button-save}"></button>
         </form>
     </div>
 </main>

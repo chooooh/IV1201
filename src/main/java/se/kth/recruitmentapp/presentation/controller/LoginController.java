@@ -21,7 +21,7 @@ import javax.validation.Valid;
 @Controller
 public class LoginController {
     static final String LOGIN_PAGE_URL      = "login-user";
-    static final String LOGIN_SUCCESS_URL    = "login-success";
+    static final String LOGIN_SUCCESS_URL   = "login-success";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ApplyController.class);
 

@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<nav th:fragment="navigation" class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav th:fragment="navigation" class="navbar navbar-expand-sm navbar-dark bg-dark">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
             aria-controls="navbarResponsive"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -16,8 +16,8 @@
         <li class="nav-item"><a class="nav-link" th:href="@{/sign-up}" th:text="#{nav.sign-up}"></a></li>
         <li class="nav-item"><a class="nav-link" th:href="@{/apply}" th:text="#{nav.apply}"></a></li>
         <li class="nav-item"><a class="nav-link" th:href="@{/recruitment}" th:text="#{nav.recruitment}"></a></li>
-        <li class="nav-item"><a class="nav-link" href="/login-user?lang=en" data-th-text="#{label.lang.en}"></a></li>
-        <li class="nav-item"><a class="nav-link" href="/login-user?lang=sv" data-th-text="#{label.lang.sv}"></a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/(lang=en)}" data-th-text="#{label.lang.en}"></a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/(lang=sv)}" data-th-text="#{label.lang.sv}"></a></li>
     </ul>
 </nav>
 </body>
