@@ -61,7 +61,7 @@
                 <input type="password" th:field="*{confirmPassword}" class="form-control" id="create-account-confirm-password" th:placeholder="#{create-account.applicant-cpassword}"/><br/>
                 <span class="error" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">confirm password error</span>
             </div>
-            <input type="submit" th:value="#{create-account.sign-up}"/>
+            <button type="submit" name="action" class="btn btn-primary" value="submit" th:text="#{create-account.sign-up}"></button>
         </form>
     </div>
 </main>

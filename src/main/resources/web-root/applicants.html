@@ -9,14 +9,14 @@
 <main layout:fragment="content">
     <section>
         <div class="container">
-            <h1>Applicants</h1>
+            <h1 th:text="#{applicants.title}"></h1>
             <table class="table table-bordered table-responsive-sm">
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>email</th>
-                    <th>Competence</th>
-                    <th>Yoe</th>
+                    <th th:text="#{applicants.title}"></th>
+                    <th th:text="#{applicants.table-id}"></th>
+                    <th th:text="#{applicants.table-email}"></th>
+                    <th th:text="#{applicants.table-years}"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -30,8 +30,8 @@
                     <!--</div>-->
                 </tbody>
             </table>
-            <a th:if="${prevPageNumber != null}" th:href="'/recruitment?page=' + ${prevPageNumber}" type="button" class="btn btn-primary" role="button">previous</a>
-            <a th:if="${nextPageNumber != null}"th:href="'/recruitment?page=' + ${nextPageNumber}" type="button" class="btn btn-primary" role="button">next</a>
+            <a th:if="${prevPageNumber != null}" th:href="'/recruitment?page=' + ${prevPageNumber}" type="button" class="btn btn-primary" role="button" th:text="#{applicants.button-previous}"></a>
+            <a th:if="${nextPageNumber != null}"th:href="'/recruitment?page=' + ${nextPageNumber}" type="button" class="btn btn-primary" role="button" th:text="#{applicants.button-next}"></a>
         </div>
     </section>
 </main>
