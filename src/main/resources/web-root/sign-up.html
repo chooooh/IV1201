@@ -8,56 +8,60 @@
 <body>
 <main layout:fragment="content">
     <div class="card-body">
-        <h1 class="card-title">Signup</h1>
-        <h2 class="card-text">This is the signup page!</h2>
+        <h1 class="card-title" th:text="#{sign-up.sign-up-title}">p</h1>
 
         <form method="POST" th:action="@{/sign-up}" th:object="${createAccountForm}" id="createAccountForm">
+
             <!-- FIRSTNAME INPUT FIELD -->
+
             <div class="form-group">
                 <div class ="row">
                     <div class="col">
-                        <label for="create-account-firstname" th:text="#{create-account.applicant-firstname}">firstname: </label>
-                        <input type="text" th:field="*{firstname}" class="form-control" id="create-account-firstname" placeholder="First name"/><br/>
+                        <label for="create-account-firstname" th:text="#{create-account.applicant-firstname}"></label>
+                        <input type="text" th:field="*{firstname}" class="form-control" id="create-account-firstname" th:placeholder="#{create-account.applicant-firstname}"/><br/>
                         <span class="error" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">firstname error</span>
                     </div>
+
             <!-- LASTNAME INPUT FIELD -->
+
                     <div class="col">
-                        <label for="create-account-surname" th:text="#{create-account.applicant-surname}" >surname: </label>
-                        <input type="text" th:field="*{surname}" class="form-control" id="create-account-surname" placeholder="Last name"/><br/>
+                        <label for="create-account-surname" th:text="#{create-account.applicant-surname}" ></label>
+                        <input type="text" th:field="*{surname}" class="form-control" id="create-account-surname" th:placeholder="#{create-account.applicant-surname}"/><br/>
                         <span class="error" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">surname error</span>
                     </div>
                 </div>
+
             <!-- USERNAME INPUT FIELD -->
 
-                <label for="create-account-username" th:text="#{create-account.applicant-username}">username: </label>
-                <input type="text" th:field="*{username}" class="form-control" id="create-account-username" placeholder="Username"/><br/>
+                <label for="create-account-username" th:text="#{create-account.applicant-username}"></label>
+                <input type="text" th:field="*{username}" class="form-control" id="create-account-username" th:placeholder="#{create-account.applicant-username}"/><br/>
                 <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username error</span>
 
             <!-- PERSONAL NUMBER INPUT FIELD -->
 
-                <label for="create-account-pnr" th:text="#{create-account.applicant-pnr}" >pnr: </label>
+                <label for="create-account-pnr" th:text="#{create-account.applicant-pnr}" ></label>
                 <input type="text" th:field="*{pnr}" class="form-control" id="create-account-pnr" placeholder="yyyymmdd-xxxx"/><br/>
                 <span class="error" th:if="${#fields.hasErrors('pnr')}" th:errors="*{pnr}">personal number error</span>
 
             <!-- EMAIL INPUT FIELD -->
 
-                <label for="create-account-email" th:text="#{create-account.applicant-email}" >email: </label>
-                <input type="email" th:field="*{email}" class="form-control" id="create-account-email" placeholder="example@example.com"/><br/>
+                <label for="create-account-email" th:text="#{create-account.applicant-email}" ></label>
+                <input type="email" th:field="*{email}" class="form-control" id="create-account-email" th:placeholder="#{create-account.applicant-email-example}"/><br/>
                 <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email error</span>
 
             <!-- PASSWORD INPUT FIELD -->
 
-                <label for="create-account-password" th:text="#{create-account.applicant-password}" >password: </label>
-                <input type="password" th:field="*{password}" class="form-control" id="create-account-password" placeholder="password"/><br/>
+                <label for="create-account-password" th:text="#{create-account.applicant-password}" ></label>
+                <input type="password" th:field="*{password}" class="form-control" id="create-account-password" th:placeholder="#{create-account.applicant-password}"/><br/>
                 <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password error</span>
 
             <!-- CONFIRM PASSWORD INPUT FIELD -->
 
-                <label for="create-account-confirm-password" th:text="#{create-account.applicant-cpassword}" >Confirm password: </label>
-                <input type="password" th:field="*{confirmPassword}" class="form-control" id="create-account-confirm-password" placeholder="password"/><br/>
+                <label for="create-account-confirm-password" th:text="#{create-account.applicant-cpassword}" ></label>
+                <input type="password" th:field="*{confirmPassword}" class="form-control" id="create-account-confirm-password" th:placeholder="#{create-account.applicant-cpassword}"/><br/>
                 <span class="error" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">confirm password error</span>
             </div>
-            <input type="submit" value="Register"/>
+            <input type="submit" th:value="#{create-account.sign-up}"/>
         </form>
     </div>
 </main>

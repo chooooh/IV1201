@@ -6,11 +6,18 @@
 </head>
 <body>
 <nav th:fragment="navigation" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
     <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" th:href="@{/login-user}" th:text="Login">Login</a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{/sign-up}" th:text="Signup">Signup</a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{/apply}" th:text="Apply">Apply</a></li>
-        <li class="nav-item"><a class="nav-link" th:href="@{/recruitment}" th:text="Recruitment">Recruitment</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/login-user}" th:text="#{nav.login}"></a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/sign-up}" th:text="#{nav.sign-up}"></a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/apply}" th:text="#{nav.apply}"></a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/recruitment}" th:text="#{nav.recruitment}"></a></li>
+        <li class="nav-item"><a class="nav-link" href="/login-user?lang=en" data-th-text="#{label.lang.en}"></a></li>
+        <li class="nav-item"><a class="nav-link" href="/login-user?lang=sv" data-th-text="#{label.lang.sv}"></a></li>
     </ul>
 </nav>
 </body>
