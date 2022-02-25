@@ -16,7 +16,14 @@
 - add heroku postgres as addon
 - heroku pg:psql --app YOUR_APP_NAME_HERE < existing-database.sql
 
-# development
-
 # production
 - heroku has postgres & spring support
+
+# dependencies
+- Spring Boot
+- Spring Devtools
+- Thymeleaf
+- Validation (javax.validation)
+- JPA
+- Spring Security
+- Lombok
