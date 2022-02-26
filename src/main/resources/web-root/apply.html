@@ -8,43 +8,57 @@
 </head>
 <body>
 <main layout:fragment="content">
-    <div class="card-body">
-        <h1 class="card-title" th:text="#{applicant-apply.application-title}"></h1>
-        <div class="alert alert-warning" role="alert" th:if="${errorDuplicateProfiles}">
-            <span th:text="${errorDuplicateProfiles}"></span>
-        </div>
-        <form th:action="@{/add-competence}" th:object="${competenceForm}" method="post">
-            <div class="form-group row">
-                <label for="application-competence" class="col-sm-2 col-form-label" th:text="#{applicant-apply.application-competence}"></label>
-                <div class="col-sm-10">
-                    <select th:field="*{selectedCompetence}" id="application-competence" class="form-control">
-                        <option th:each="competence: *{competenceList}" th:value="${competence.name}" th:text="${competence.name}"></option>
-                    </select>
-                </div>
-                <label for="application-yearsOfExperience" class="col-sm-2 col-form-label" th:text="#{applicant-apply.application-yoe}"></label>
-                <div class="col-sm-10">
-                    <input type="text" th:field="*{yearsOfExperience}" class="form-control" id="application-yearsOfExperience" th:placeholder="#{applicant-apply.application-placeholder-years}"/><br/>
-                    <span class="error" th:if="${#fields.hasErrors('yearsOfExperience')}" th:errors="*{yearsOfExperience}">years of experience error</span>
-                </div>
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title" th:text="#{applicant-apply.application-title}"></h1>
+            <div class="alert alert-warning" role="alert" th:if="${errorDuplicateProfiles}">
+                <span th:text="${errorDuplicateProfiles}"></span>
             </div>
-            <input th:field="*{competenceList}" type="hidden"/>
-            <button type="submit" name="action" class="btn btn-primary" value="add-competence" th:text="#{applicant-apply.application-button-add}"></button>
-            <section>
-                <label th:text="#{applicant-apply.application-info1}"></label>
-                <label th:text="#{applicant-apply.application-info2}"></label>
-                <label th:text="#{applicant-apply.application-info3}"></label>
-                <ul th:each="profile : ${profiles}">
-                    <input type="checkbox" id="competence-to-be-removed" th:field="*{toBeRemovedProfileNames}" th:value="${profile.competence.name}">
+            <form th:action="@{/add-competence}" th:object="${competenceForm}" method="post">
+                <div class="form-group row">
+                    <label for="application-competence" class="col-sm-2 col-form-label"
+                           th:text="#{applicant-apply.application-competence}"></label>
+                    <div class="col-sm-4">
+                        <select th:field="*{selectedCompetence}" id="application-competence" class="form-control">
+                            <option th:each="competence: *{competenceList}" th:value="${competence.name}"
+                                    th:text="${competence.name}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="application-yearsOfExperience" class="col-sm-2 col-form-label"
+                           th:text="#{applicant-apply.application-yoe}"></label>
+                    <div class="col-sm-4">
+                        <input type="text" th:field="*{yearsOfExperience}" class="form-control"
+                               id="application-yearsOfExperience"
+                               th:placeholder="#{applicant-apply.application-placeholder-years}"/><br/>
+                        <span class="error" th:if="${#fields.hasErrors('yearsOfExperience')}"
+                              th:errors="*{yearsOfExperience}">years of experience error</span>
+                    </div>
+                </div>
+                <input th:field="*{competenceList}" type="hidden"/>
+                <button type="submit" name="action" class="btn btn-primary" value="add-competence"
+                        th:text="#{applicant-apply.application-button-add}"></button>
+                <section>
+                    <label th:text="#{applicant-apply.application-info1}"></label>
+                    <label th:text="#{applicant-apply.application-info2}"></label>
+                    <label th:text="#{applicant-apply.application-info3}"></label>
+                    <ul th:each="profile : ${profiles}">
+                        <input type="checkbox" id="competence-to-be-removed" th:field="*{toBeRemovedProfileNames}"
+                               th:value="${profile.competence.name}">
                         <label for="competence-to-be-removed">
                             <span th:text="${profile.competence.name}"></span>
                             <span th:text="${profile.yoe}"></span>
                         </label>
-                    </input>
-                </ul>
-            </section>
-            <button type="submit" name="action" class="btn btn-primary" value="remove" th:text="#{applicant-apply.application-button-remove}"></button>
-            <button type="submit" name="action" class="btn btn-primary" value="save" th:text="#{applicant-apply.application-button-save}"></button>
-        </form>
+                        </input>
+                    </ul>
+                </section>
+                <button type="submit" name="action" class="btn btn-primary" value="remove"
+                        th:text="#{applicant-apply.application-button-remove}"></button>
+                <button type="submit" name="action" class="btn btn-primary" value="save"
+                        th:text="#{applicant-apply.application-button-save}"></button>
+            </form>
+        </div>
     </div>
 </main>
 </body>

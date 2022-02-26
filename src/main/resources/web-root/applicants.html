@@ -8,18 +8,19 @@
 <body>
 <main layout:fragment="content">
     <section>
-        <div class="container">
-            <h1 th:text="#{applicants.title}"></h1>
-            <table class="table table-bordered table-responsive-sm">
-                <thead>
-                <tr>
-                    <th th:text="#{applicants.title}"></th>
-                    <th th:text="#{applicants.table-id}"></th>
-                    <th th:text="#{applicants.table-email}"></th>
-                    <th th:text="#{applicants.table-years}"></th>
-                </tr>
-                </thead>
-                <tbody>
+        <div class="card">
+            <div class="container p-2">
+                <h1 th:text="#{applicants.title}"></h1>
+                <table class="table table-bordered table-responsive-sm">
+                    <thead>
+                    <tr>
+                        <th th:text="#{applicants.title}"></th>
+                        <th th:text="#{applicants.table-id}"></th>
+                        <th th:text="#{applicants.table-email}"></th>
+                        <th th:text="#{applicants.table-years}"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
                     <!--<div th:if="${hasResults}"> -->
                     <tr th:each="profile: ${profiles}">
                         <td th:text="${profile.id}">id</td>
@@ -28,10 +29,13 @@
                         <td th:text="${profile.yoe + ' yoe'}">yoe</td>
                     </tr>
                     <!--</div>-->
-                </tbody>
-            </table>
-            <a th:if="${prevPageNumber != null}" th:href="'/recruitment?page=' + ${prevPageNumber}" type="button" class="btn btn-primary" role="button" th:text="#{applicants.button-previous}"></a>
-            <a th:if="${nextPageNumber != null}"th:href="'/recruitment?page=' + ${nextPageNumber}" type="button" class="btn btn-primary" role="button" th:text="#{applicants.button-next}"></a>
+                    </tbody>
+                </table>
+                <a th:if="${prevPageNumber != null}" th:href="'/recruitment?page=' + ${prevPageNumber}" type="button"
+                   class="btn btn-primary" role="button" th:text="#{applicants.button-previous}"></a>
+                <a th:if="${nextPageNumber != null}" th:href="'/recruitment?page=' + ${nextPageNumber}" type="button"
+                   class="btn btn-primary" role="button" th:text="#{applicants.button-next}"></a>
+            </div>
         </div>
     </section>
 </main>
