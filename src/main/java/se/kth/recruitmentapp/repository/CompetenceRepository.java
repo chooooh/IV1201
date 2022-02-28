@@ -18,8 +18,6 @@ import java.util.List;
 @Transactional(propagation = Propagation.MANDATORY)
 public interface CompetenceRepository extends CrudRepository<Competence, Integer> {
     List<Competence> findAll();
-
     Competence findCompetenceByName(String name);
-
     List<Competence> findCompetenceByLanguageCode(String language);
 }
