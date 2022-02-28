@@ -22,6 +22,7 @@ public class Competence {
     @Column(name = "competence_id")
     private int id;
     private String name;
+    private String languageCode;
 
 
     public Competence() {

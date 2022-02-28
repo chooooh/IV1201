@@ -36,4 +36,8 @@ public class CompetenceService {
     public Competence getCompetenceByName(String name) {
         return repository.findCompetenceByName(name);
     }
+
+    public List<Competence> getAllCompetencesByLanguage(String language) {
+        return repository.findCompetenceByLanguageCode(language);
+    }
 }

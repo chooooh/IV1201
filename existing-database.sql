@@ -54,6 +54,7 @@ ALTER TABLE public.availability ALTER COLUMN availability_id ADD GENERATED ALWAY
 
 CREATE TABLE public.competence (
     competence_id integer NOT NULL,
+    language_code character varying(255),
     name character varying(255)
 );
 
