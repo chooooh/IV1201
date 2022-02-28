@@ -3,7 +3,7 @@
       layout:decorate="~{resources/fragments/layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="#{header.title}"></title>
 
 </head>
 <body>
@@ -31,9 +31,9 @@
                     <div class="col-sm-4">
                         <input type="text" th:field="*{yearsOfExperience}" class="form-control"
                                id="application-yearsOfExperience"
-                               th:placeholder="#{applicant-apply.application-placeholder-years}"/><br/>
-                        <span class="error" th:if="${#fields.hasErrors('yearsOfExperience')}"
-                              th:errors="*{yearsOfExperience}">years of experience error</span>
+                               th:placeholder="#{applicant-apply.application-placeholder-years}"/>
+                        <small class="form-text text-muted" th:if="${#fields.hasErrors('yearsOfExperience')}"
+                              th:errors="*{yearsOfExperience}">years of experience error</small>
                     </div>
                 </div>
                 <input th:field="*{competenceList}" type="hidden"/>
@@ -43,7 +43,9 @@
                     <label th:text="#{applicant-apply.application-info1}"></label>
                     <label th:text="#{applicant-apply.application-info2}"></label>
                     <label th:text="#{applicant-apply.application-info3}"></label>
-                    <ul th:each="profile : ${profiles}">
+                    <ul class="list-group" th:each="profile : ${profiles}">
+                        <div class="col-4 p-2">
+                        <li class="list-group-item" style="height: 40px; padding: 5px 15px;">
                         <input type="checkbox" id="competence-to-be-removed" th:field="*{toBeRemovedProfileNames}"
                                th:value="${profile.competence.name}">
                         <label for="competence-to-be-removed">
@@ -51,6 +53,8 @@
                             <span th:text="${profile.yoe}"></span>
                         </label>
                         </input>
+                        </li>
+                        </div>
                     </ul>
                 </section>
                 <button type="submit" name="action" class="btn btn-primary" value="remove"

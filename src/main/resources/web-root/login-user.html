@@ -3,46 +3,48 @@
       layout:decorate="~{resources/fragments/layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="#{header.title}"></title>
 
 </head>
 <body>
 <main layout:fragment="content">
     <div class="card">
-        <div class="row px-md-2 justify-content-md-center">
+        <div class="row justify-content-center">
+            <div class="col-3">
             <div class="card text-center border border-white">
                 <div class="card-body">
                     <h1 class="card-title" th:text="#{login-user.login-title}"></h1>
                     <form th:action="@{/login}" th:object="${loginForm}" method="post">
 
-                        <div class="mb-3">
-                            <div class="form-group">
+
+                            <div class="form-group my-2">
                                 <label for="login-username" th:text="#{login-user.username}">Username</label>
                                 <input type="text" th:field="*{username}" class="form-control text-center" id="login-username"
                                        th:placeholder="#{login-user.username-placeholder}"/>
                                 <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</span>
                             </div>
 
-                            <div class="mb-3">
-                                <div class="form-group">
+
+                                <div class="form-group my-2">
                                     <label for="login-password" th:text="#{login-user.password}">Password</label>
                                     <input type="password" th:field="*{password}" class="form-control text-center"
                                            id="login-password"
                                            th:placeholder="#{login-user.password-placeholder}"/>
                                     <span class="error" th:if="${#fields.hasErrors('password')}"
                                           th:errors="*{password}">Password Error</span>
-                                </div>
 
-                                <div class="mb-3">
+
+                                    <div class="form-group my-2">
                                     <button type="submit" name="action" class="btn btn-primary" value="submit"
                                             th:text="#{login-user.login-submit}"></button>
-                                </div>
+                                    </div>
 
                             </div>
-                        </div>
+
                     </form>
                 </div>
             </div>
+                </div>
         </div>
     </div>
 </main>

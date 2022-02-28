@@ -22,6 +22,7 @@ public class CreateAccountForm {
     @Pattern(regexp = "^\\d{6}(?:\\d{2})?[-\\s]?\\d{4}$", message = "{create-acct.applicant-pnr.format}")
     private String pnr;
     @NotNull
+    @NotBlank(message = "{create-acct.applicant-email.missing}")
     @Email(message = "{create-acct.applicant-email.format}")
     private String email;
     @NotNull
