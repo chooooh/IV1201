@@ -27,17 +27,6 @@ public class ProfileService {
     private ProfileRepository profileRepository;
 
     /**
-     * Method that retrieves profiles. The user may query the number of profiles and which page to retrieve.
-     * @param pageable the pageable object that determines profiles to fetch
-     * @return specified profiles
-     */
-    public List<Profile> getProfiles(Pageable pageable) {
-        List<Profile> profiles = new ArrayList<>();
-        profileRepository.findAll(pageable).forEach(profile -> profiles.add(profile));
-        return profiles;
-    }
-
-    /**
      * Method that retrieves profiles of PageImpl. The user may query the number of profiles and which page to retrieve.
      * @param pageable the pageable object that determines profiles to fetch
      * @return specified profiles
@@ -46,6 +35,7 @@ public class ProfileService {
         PageImpl<Profile> profiles = profileRepository.findAll(pageable);
         return profiles;
     }
+
 
     /**
      * Methods adds the specified profile to the database.
