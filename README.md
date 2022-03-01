@@ -8,7 +8,7 @@
   - CREATE DATABASE recruitment;
   - \c recruitment;
   - \i /host_files/existing-database.sql;
-  - 
+
 ## use adminer for database management
 - docker run --name adminer --link IV1201psql:db -p 8050:8080 -d adminer
 
