@@ -89,17 +89,25 @@ class Test(unittest.TestCase):
         email_form = self.__find('//*[@id="create-account-email"]', driver)
         password_form = self.__find('//*[@id="create-account-password"]', driver)
         confirmpassword_form = self.__find('//*[@id="create-account-confirm-password"]', driver)
+        submit_button = self.__find('//*[@id="createAccountForm"]/input[2]', driver)
         firstname_form.send_keys(fn)
         surname_form.send_keys(sn)
         pnr_form.send_keys(pnr)
         email_form.send_keys(em)
         password_form.send_keys(pa)
         confirmpassword_form.send_keys(cpa)
+        submit_button.click()
 
-    def test_signup_failure_empty(self):
+    def test_signup_failure_empty_username_but_fields_remain(self):
         driver = self.driver
         driver.get(self.BASE_URL + "/sign-up")
-        self.__signup("abcdef", "abcdef", )
+        firstname = "test"
+        self.__signup(firstname, "will", "",  "19990115-0000", "fail@gmail.com", "123456", "123456", driver)
+        validationMessage = self.__find("/html/body/main/div/form/div/span", driver)
+        firstname_form = self.__find('//*[@id="create-account-firstname"]', driver)
+        self.assertIn("Username must be", validationMessage.text)
+        self.assertIn(firstname, firstname.get_attribute("value"))
+
 
     def tearDown(self):
         self.driver.close()
