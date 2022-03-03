@@ -125,7 +125,7 @@ class Test(unittest.TestCase):
         loggedInHeader = self.__find(self.APPLY_PAGE, driver)
         self.assertIn("Apply", loggedInHeader.text)
         driver = self.driver
-        self.__remove_user(username, driver)
+        self.remove_user(username, driver)
 
 
     def __find_and_input(self, xpath, content, driver):
@@ -138,7 +138,7 @@ class Test(unittest.TestCase):
         element = self.__find(xpath, driver)
         element.click()
 
-    def __remove_user(self, username, driver):
+    def remove_user(self, username, driver):
         driver.get("http://localhost:8050/?pgsql=db&username=postgres&db=recruitment&ns=public&select=person&order%5B0%5D=person_id&desc%5B0%5D=1")
         self.__find_and_input('//*[@id="username"]', "postgres", driver)
         self.__find_and_input('//*[@id="content"]/form/table/tbody/tr[4]/td/input', "root123", driver)
