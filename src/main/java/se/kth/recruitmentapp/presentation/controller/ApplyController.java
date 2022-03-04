@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,8 @@ import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
 /**
  * Handles all HTTP routes to all application related operations
  */
@@ -42,6 +45,9 @@ public class ApplyController {
 
     /**
      * A get request for the application page.
+     * This method is locale-sensitive, as it requires the selected language stored in locale to fetch
+     * the appropriate competences by language.
+     *
      * @param model Model objects used by the page.
      * @return the applicant form url.
      */
@@ -49,10 +55,16 @@ public class ApplyController {
     public String showApplyPageView(Model model){
         LOGGER.info("GET /"+ APPLY_PAGE_URL);
 
+        //Get current person
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         currentPerson =  (Person) auth.getPrincipal();
 
-        List<Competence> competenceList = competenceService.getAllCompetences();
+        //Check selected language
+        Locale locale = LocaleContextHolder.getLocale();
+        String language = locale.getLanguage();
+        //search for competences by language
+        List<Competence> competenceList = competenceService.getAllCompetencesByLanguage(language);
+
         profiles = profileService.getProfilesByPerson(currentPerson);
 
         LOGGER.debug("Competence list: " + competenceList);
@@ -127,7 +139,6 @@ public class ApplyController {
         if(bindingResult.hasErrors()){
             LOGGER.error("Binding errors in apply/action=remove");
         }
-
 
         removeProfile(competenceForm.getToBeRemovedProfileNames());
 
