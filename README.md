@@ -9,17 +9,17 @@
   - \c recruitment;
   - \i /host_files/existing-database.sql;
 
-## use adminer for database management
+## Use adminer for database management
 - docker run --name adminer --link IV1201psql:db -p 8050:8080 -d adminer
 
-## add database from sql file
+## Add database from sql file
 - add heroku postgres as addon
 - heroku pg:psql --app YOUR_APP_NAME_HERE < existing-database.sql
 
-# production
+# Production
 - heroku has postgres & spring support
 
-# dependencies
+# Dependencies
 - Spring Boot
 - Spring Devtools
 - Thymeleaf
