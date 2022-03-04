@@ -43,21 +43,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                        .antMatchers("/recruitment", "/recruitment/**").hasAuthority(ROLE_RECRUITER)
-                        .antMatchers("/apply", "/add-competence").hasAuthority(ROLE_APPLICANT)
-                        .antMatchers("/", "/**").permitAll()
-                        .anyRequest().authenticated()
-                        .and()
+                .antMatchers("/recruitment", "/recruitment/**").hasAuthority(ROLE_RECRUITER)
+                .antMatchers("/apply", "/add-competence").hasAuthority(ROLE_APPLICANT)
+                .antMatchers("/", "/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
                 .exceptionHandling()
-                        .accessDeniedPage("/login-user")
-                        .and()
+                .accessDeniedPage("/login-user")
+                .and()
                 .formLogin()
-                        .loginPage("/login-user").permitAll()
-                        .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/login-success", true)
-                        .and()
+                .loginPage("/login-user").permitAll()
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/login-success", true)
+                .and()
                 .logout()
-                        .permitAll();
+                .permitAll();
     }
 
     /**
