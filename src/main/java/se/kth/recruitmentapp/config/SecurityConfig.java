@@ -21,6 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String ROLE_RECRUITER = "recruiter";
 
     @Autowired
+    @Lazy
     private UserDetailsService userDetailsService;
 
     /**
