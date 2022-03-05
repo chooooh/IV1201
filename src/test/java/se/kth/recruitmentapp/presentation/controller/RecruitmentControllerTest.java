@@ -13,8 +13,8 @@ import static org.hamcrest.Matchers.not;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(RecruitmentController.class)
-//@SpringBootTest
+//@WebMvcTest(RecruitmentController.class)
+@SpringBootTest
 @AutoConfigureMockMvc
 class RecruitmentControllerTest {
     // private RecruitmentController controller;
