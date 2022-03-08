@@ -2776,12 +2776,13 @@ COPY public.availability (availability_id, person_id, from_date, to_date) FROM s
 -- Data for Name: competence; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.competence (competence_id, name) FROM stdin;
-1	ticket sales
-2	lotteries
-3	roller coaster operation
-\.
 
+INSERT INTO public.competence (language_code, name) VALUES ('en','ticket sales');
+INSERT INTO public.competence (language_code, name) VALUES ('en','lotteries');
+INSERT INTO public.competence (language_code, name) VALUES ('en','roller coaster operation');
+INSERT INTO public.competence (language_code, name) VALUES ('sv','biljettförsäljning');
+INSERT INTO public.competence (language_code, name) VALUES ('sv','lotterier');
+INSERT INTO public.competence (language_code, name) VALUES ('sv','drift av berg-och dalbanor');
 
 --
 -- Data for Name: competence_profile; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -5446,4 +5447,3 @@ ALTER TABLE ONLY public.person
 --
 -- PostgreSQL database dump complete
 --
-
