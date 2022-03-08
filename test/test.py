@@ -14,8 +14,8 @@ class Test(unittest.TestCase):
         self.driver = webdriver.Chrome()
 
     def __login(self, username, password, driver):
-        username_form = driver.find_element(By.XPATH, '//*[@id="login-username"]');
-        password_form = driver.find_element(By.XPATH, '//*[@id="login-password"]');
+        username_form = driver.find_element(By.XPATH, '//*[@id="login-username"]')
+        password_form = driver.find_element(By.XPATH, '//*[@id="login-password"]')
         submit_form = driver.find_element(By.XPATH, '/html/body/main/div/form/p/input')
         username_form.send_keys(username)
         password_form.send_keys(password)
