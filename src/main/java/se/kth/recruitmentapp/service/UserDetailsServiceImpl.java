@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import se.kth.recruitmentapp.domain.models.Person;
 import se.kth.recruitmentapp.repository.PersonRepository;
-
 /**
  * This class is required by Spring Security. It implements the required interface and provides an implementation for
  * fetching users as required.
