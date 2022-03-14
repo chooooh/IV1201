@@ -1,6 +1,7 @@
 package se.kth.recruitmentapp.presentation.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +14,8 @@ import se.kth.recruitmentapp.domain.models.Profile;
 import se.kth.recruitmentapp.service.ProfileService;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 /**
  * Handles all HTTP routes to all recruitment related operations
@@ -39,6 +42,7 @@ public class RecruitmentController {
             return "redirect:/recruitment";
         }
 
+
         Pageable pageable = PageRequest.of(page, size);
         PageImpl<Profile> profilePageImpls = profileService.getProfilePages(pageable);
 
@@ -54,6 +58,11 @@ public class RecruitmentController {
         }
 
         List<Profile> profiles = profilePageImpls.toList();
+        /*
+        List<Profile> filteredProfiles = profiles.stream().filter(profile ->
+                profile.getCompetence().getLanguageCode().equals(language)
+        ).collect(Collectors.toList());*/
+
         model.addAttribute("profiles", profiles);
         return "applicants";
     }

@@ -54,6 +54,7 @@ ALTER TABLE public.availability ALTER COLUMN availability_id ADD GENERATED ALWAY
 
 CREATE TABLE public.competence (
     competence_id integer NOT NULL,
+    competence_name_id integer NOT NULL,
     language_code character varying(255),
     name character varying(255)
 );
@@ -2776,13 +2777,12 @@ COPY public.availability (availability_id, person_id, from_date, to_date) FROM s
 -- Data for Name: competence; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-
-INSERT INTO public.competence (language_code, name) VALUES ('en','ticket sales');
-INSERT INTO public.competence (language_code, name) VALUES ('en','lotteries');
-INSERT INTO public.competence (language_code, name) VALUES ('en','roller coaster operation');
-INSERT INTO public.competence (language_code, name) VALUES ('sv','biljettförsäljning');
-INSERT INTO public.competence (language_code, name) VALUES ('sv','lotterier');
-INSERT INTO public.competence (language_code, name) VALUES ('sv','drift av berg-och dalbanor');
+INSERT INTO public.competence (competence_name_id, language_code, name) VALUES (1,'en','ticket sales');
+INSERT INTO public.competence (competence_name_id, language_code, name) VALUES (2,'en','lotteries');
+INSERT INTO public.competence (competence_name_id, language_code, name) VALUES (3,'en','roller coaster operation');
+INSERT INTO public.competence (competence_name_id, language_code, name) VALUES (1,'sv','biljettförsäljning');
+INSERT INTO public.competence (competence_name_id, language_code, name) VALUES (2,'sv','lotterier');
+INSERT INTO public.competence (competence_name_id, language_code, name) VALUES (3,'sv','drift av berg-och dalbanor');
 
 --
 -- Data for Name: competence_profile; Type: TABLE DATA; Schema: public; Owner: postgres

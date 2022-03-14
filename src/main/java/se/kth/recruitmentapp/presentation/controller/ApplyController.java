@@ -65,7 +65,9 @@ public class ApplyController {
         //search for competences by language
         List<Competence> competenceList = competenceService.getAllCompetencesByLanguage(language);
 
-        profiles = profileService.getProfilesByPerson(currentPerson);
+        //profiles = profileService.getProfilesByPerson(currentPerson);
+        profiles = profileService.findProfilesByPersonAndCompetencesByLanguage(currentPerson, language);
+
 
         LOGGER.debug("Competence list: " + competenceList);
         CompetenceForm competenceForm = new CompetenceForm();
@@ -102,7 +104,7 @@ public class ApplyController {
 
         //Check for duplicate profiles
         for(Profile profile: profiles){
-            if(profile.getCompetence().getName().equals(comp.getName())){
+            if(profile.getCompetence().getCompetenceNameId() == comp.getCompetenceNameId()){
                 addCompetence = false; //Don't create new profile and add this competence
                 LOGGER.info(currentPerson.getUsername() + " attempted to add "+ comp.getName() +" twice");
                 model.addAttribute("errorDuplicateProfiles", "Error, you can not add the same competence twice");
@@ -189,6 +191,8 @@ public class ApplyController {
             model.addAttribute("profiles", profiles);
             return APPLY_PAGE_URL;
         }
+
+
 
         for(Profile profile: profiles){
             profile.setPerson(currentPerson);

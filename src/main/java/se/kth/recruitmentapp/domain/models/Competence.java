@@ -21,6 +21,7 @@ public class Competence {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "competence_id")
     private int id;
+    private int competenceNameId;
     private String name;
     private String languageCode;
 

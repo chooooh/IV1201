@@ -22,6 +22,10 @@ import java.util.List;
 public interface ProfileRepository extends JpaRepository<Profile, Integer> {
     List<Profile> findProfileByPerson(Person person);
     PageImpl<Profile> findAll(Pageable pageable);
+    Profile findProfileByCompetenceIdAndPersonId(int id, int id1);
 
+    PageImpl<Profile> findAllByCompetenceLanguageCode(Pageable pageable, String languageCode);
+
+    List<Profile> findProfileByPersonAndCompetenceLanguageCode(Person currentPerson, String language);
 }
 

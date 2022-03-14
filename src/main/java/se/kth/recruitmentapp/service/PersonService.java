@@ -49,9 +49,6 @@ public class PersonService {
         personRepository.save(person);
     }
 
-    public void saveCompetenceTest() throws IllegalCompetenceException {
-        throw new IllegalCompetenceException("already exists");
-    }
 
     /**
      * Retrieves the specified role.

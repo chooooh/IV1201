@@ -20,4 +20,6 @@ public interface CompetenceRepository extends CrudRepository<Competence, Integer
     List<Competence> findAll();
     Competence findCompetenceByName(String name);
     List<Competence> findCompetenceByLanguageCode(String language);
+
+    List<Competence> findCompetenceByCompetenceNameId(int competenceNameId);
 }
